@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Form, FormControl, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
@@ -12,12 +13,12 @@ const Header = () => {
         <Navbar.Brand href="/">
           <img
             src={logo}
-            width="30"
-            height="30"
+            width="140"
+            height="35"
             className="d-inline-block align-top"
             alt="Pixel Glitch Logo"
           />
-          <span className="ms-2">Pixel Glitch</span>
+          {/* <span className="ms-2">Pixel Glitch</span> */}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -26,22 +27,17 @@ const Header = () => {
             <Nav.Link href="/top-ventas">Top ventas</Nav.Link>
             <Nav.Link href="/login">Iniciar sesión</Nav.Link>
           </Nav>
-          <Form className="d-flex me-3">
-            <div className="input-group">
-              <Button variant="dark" className="border-end-0">
-                <FontAwesomeIcon icon={faSearch} />
-              </Button>
-              <FormControl
-                type="search"
-                placeholder="Buscar"
-                className="bg-transparent text-white border-start-0"
-                aria-label="Buscar"
-              />
-            </div>
-          </Form>
-          <Button variant="dark">
-            <FontAwesomeIcon icon={faShoppingCart} size="lg" />
-          </Button>
+          <div className="d-flex align-items-center">
+            <div className="search-bar-container me-3">
+              <div className="search-icon">
+                <FontAwesomeIcon icon={faSearch} />
+              </div>
+              <input type="text" placeholder="Buscar" className="search-input" />
+            </div>
+            <Link to="/carrito" className="shopping-cart-container">
+              <FontAwesomeIcon icon={faShoppingCart} size="lg" />
+            </Link>
+          </div>
         </Navbar.Collapse>
       </Container>
     </Navbar>
