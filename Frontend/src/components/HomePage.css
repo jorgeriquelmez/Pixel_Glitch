@@ -1,0 +1,9 @@
+/* HomePage.css */
+.homepage-container {
+  min-height: 80vh;
+}
+
+.carousel-item img {
+  max-height: 600px;
+  object-fit: cover;
+}

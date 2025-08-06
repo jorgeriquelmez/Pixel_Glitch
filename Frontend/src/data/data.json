@@ -1,0 +1,24 @@
+{
+  "images": [
+    {
+      "id": "1",
+      "url": "https://i.imgur.com/uR1wQk4.jpg",
+      "comment": "¡Explora mundos increíbles en Pixel Glitch!"
+    },
+    {
+      "id": "2",
+      "url": "https://i.imgur.com/1GjS5Ww.jpg",
+      "comment": "La comunidad de Pixel Glitch está creciendo, ¡únete!"
+    },
+    {
+      "id": "3",
+      "url": "https://i.imgur.com/lM8mP8t.jpg",
+      "comment": "Descubre las mejores ofertas en juegos retro y modernos."
+    },
+    {
+      "id": "4",
+      "url": "https://i.imgur.com/4hK4uVj.jpg",
+      "comment": "Nuestra colección de juegos de terror te hará temblar."
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+.navbar-brand img {
+  margin-right: 8px;
+}
+
+.form-control {
+  box-shadow: none !important;
+  border-color: #495057 !important;
+}
+
+.input-group .form-control {
+  background-color: #2b3940;
+  border-left: none;
+}
+
+.nav-link {
+  color: white !important;
+  margin-right: 15px;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #c9c9c9 !important;
+}
