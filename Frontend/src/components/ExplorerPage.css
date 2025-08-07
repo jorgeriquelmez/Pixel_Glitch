@@ -1,5 +1,5 @@
 .categories-section {
-  padding-top: 50px; /* Espacio entre la galería y las categorías */
+  padding-top: 0px; /* Espacio entre la galería y las categorías */
   text-align: center;
 }
 
@@ -25,7 +25,7 @@
 
 .category-image {
   width: 100%;
-  height: auto;
+  height: 200px;
   display: block;
   transition: transform 0.3s ease;
 }
@@ -49,4 +49,15 @@
   opacity: 1; /* Oculta el overlay por defecto, se muestra al hacer hover */
   transition: opacity 0.3s ease;
   text-transform: uppercase;
+}
+
+.portada-section {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.portada-section img {
+  width: auto;
+  max-height: 400px;
+  object-fit: cover;
 }

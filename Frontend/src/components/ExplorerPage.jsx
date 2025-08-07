@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
+import portadaImage from '../assets/portada.jpeg';
 import data from '../data/data.json';
 import './ExplorerPage.css';
 
@@ -12,7 +13,14 @@ const ExplorerPage = () => {
 
   return (
     <div className="explorer-container">
-
+      <Container className="portada-section">
+        <div className="portada-wrapper">
+          <img src={portadaImage} alt="Descripción de la imagen" className="portada-image" />
+          <div className="portada-text">
+            <span>¡Bienvenido a los videojuegos!</span>
+          </div>
+        </div>
+      </Container>
 
       <Container className="categories-section">
         <h2 className="text-center my-5">Categorías</h2>
