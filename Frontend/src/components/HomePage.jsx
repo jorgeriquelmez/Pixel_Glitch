@@ -23,7 +23,7 @@ const HomePage = () => {
                 alt={image.comment}
               />
               <Carousel.Caption>
-                <p>{image.comment}</p>
+                <p className="carousel-text">{image.comment}</p>
               </Carousel.Caption>
             </Carousel.Item>
           ))}

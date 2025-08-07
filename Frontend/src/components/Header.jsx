@@ -8,7 +8,7 @@ import './Header.css';
 
 const Header = () => {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg" className="py-3">
+    <Navbar variant="dark" expand="lg" className="bg-custom-color py-3" style={{ borderBottom: '1px solid #e5e8eb' }}>
       <Container>
         <Navbar.Brand href="/">
           <img
@@ -26,6 +26,7 @@ const Header = () => {
             <Nav.Link href="/explorador">Categorías</Nav.Link>
             <Nav.Link href="/top-ventas">Top ventas</Nav.Link>
             <Nav.Link href="/login">Iniciar sesión</Nav.Link>
+            <Nav.Link href="/admin">Administrador</Nav.Link>
           </Nav>
           <div className="d-flex align-items-center">
             <div className="search-bar-container me-3">

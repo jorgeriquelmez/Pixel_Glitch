@@ -12,3 +12,6 @@
 .footer a:hover {
   color: #ccc;
 }
+.custom-footer-bg {
+  background-color: #121a21; /* Un color hexadecimal personalizado */
+}
