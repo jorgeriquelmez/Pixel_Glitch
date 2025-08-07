@@ -1,0 +1,85 @@
+/* src/components/CheckoutPage.css */
+
+:root {
+  --bg: #1e1f29;
+  --input-bg: #2c2f3e;
+  --primary: #4d6fff;
+  --text: #ffffff;
+  --muted: #a0a3b1;
+}
+
+.checkout-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  color: var(--text);
+  font-family: 'Roboto', sans-serif;
+}
+
+.checkout-container h2 {
+  margin-bottom: 1.5rem;
+}
+
+.section {
+  margin-bottom: 2rem;
+}
+
+.section label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.section input {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--input-bg);
+  border: none;
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.fields-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.order-summary {
+  margin-top: 2rem;
+}
+
+.order-summary .item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.order-summary .item img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 1rem;
+}
+
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.button-buy {
+  width: 100%;
+  margin-top: 2rem;
+  padding: 0.85rem;
+  background: var(--primary);
+  border: none;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--text);
+}

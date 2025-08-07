@@ -1,0 +1,24 @@
+{
+  "images": [
+    {
+      "id": "1",
+      "url": "https://erikstore.com/blog/wp-content/uploads/2024/12/BannerBlog_VIDEOJUEGOS_2025-1080x675.jpg",
+      "comment": "¡Explora mundos increíbles en Pixel Glitch!"
+    },
+    {
+      "id": "2",
+      "url": "https://www.elplural.com/uploads/s1/90/57/23/caratulas-playstation-5.jpeg",
+      "comment": "La comunidad de Pixel Glitch está creciendo, ¡únete!"
+    },
+    {
+      "id": "3",
+      "url": "https://www.esportmaniacos.com/wp-content/uploads/2021/10/doom-1993-e1634548202226.jpg",
+      "comment": "Descubre las mejores ofertas en juegos retro y modernos."
+    },
+    {
+      "id": "4",
+      "url": "https://www.ecuavisa.com/binrepository/1067x601/242c0/825d600/none/11705/GCCI/resident-evil-ecuavisa_1831176_20241030222151.jpg",
+      "comment": "Nuestra colección de juegos de terror te hará temblar."
+    }
+  ]
+}

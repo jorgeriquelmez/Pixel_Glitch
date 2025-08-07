@@ -1,0 +1,17 @@
+.footer {
+  /*
+    Ejemplo: si quisieras un color de fondo diferente
+    background-color: #1a1a1a;
+  */
+}
+
+.footer a {
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: #ccc;
+}
+.custom-footer-bg {
+  background-color: #121a21; /* Un color hexadecimal personalizado */
+}
