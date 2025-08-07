@@ -1,26 +1,25 @@
-main{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100vh
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* height: 100vh */
 }
 
 input.form-control {
-  width: 400px; 
-  max-width: 100%; 
+  width: 400px;
+  max-width: 100%;
   background-color: #243847;
   border: 1px solid #243847;
   padding: 10px;
-  color: #91b0c9 !important; 
+  color: #91b0c9 !important;
 }
 
 input.form-control::placeholder {
-  color: #91b0c9; 
+  color: #91b0c9;
   opacity: 1;
 }
 
 .boton.btn {
-  width: 400px; 
-  
+  width: 400px;
 }
