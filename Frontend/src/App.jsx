@@ -5,6 +5,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './components/HomePage';
 import ExplorerPage from './components/ExplorerPage';
+import Login from './components/Login';
+import Register from './components/Register';
 import './App.css';
 
 const App = () => {
@@ -17,6 +19,9 @@ const App = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/explorador" element={<ExplorerPage />} />
             {/* PARA AGREGAR LAS NUEVAS RUTAS */}
+            <Route path="/login" element={<Login/>} />
+            <Route path="/register" element={<Register/>} />
+           
           </Routes>
         </main>
         <Footer />
