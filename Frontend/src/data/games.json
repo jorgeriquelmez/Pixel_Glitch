@@ -1,0 +1,75 @@
+
+[
+  {
+    "title": "Cyberpunk 2077",
+    "platforms": "PC, PS5, Xbox Series X/S",
+    "price": "$59.99",
+    "image": "https://via.placeholder.com/200x250.png?text=Cyberpunk+2077"
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt",
+    "platforms": "PC, PS4, Xbox One, Switch",
+    "price": "$39.99",
+    "image": "https://via.placeholder.com/200x250.png?text=The+Witcher+3"
+  },
+  {
+    "title": "Red Dead Redemption 2",
+    "platforms": "PC, PS4, Xbox One",
+    "price": "$49.99",
+    "image": "https://via.placeholder.com/200x250.png?text=Red+Dead+Redemption+2"
+  },
+  {
+    "title": "Grand Theft Auto V",
+    "platforms": "PC, PS4, Xbox One",
+    "price": "$19.99",
+    "image": "https://via.placeholder.com/200x250.png?text=Grand+Theft+Auto+V"
+  },
+  {
+    "title": "Assassin's Creed Valhalla",
+    "platforms": "PC, PS4, PS5, Xbox Series X/S, Xbox One",
+    "price": "$29.99",
+    "image": "https://via.placeholder.com/200x250.png?text=Assassin's+Creed+Valhalla"
+  },
+  {
+    "title": "Far Cry 6",
+    "platforms": "PC, PS5, PS4, Xbox Series X/S, Xbox One",
+    "price": "$29.99",
+    "image": "https://via.placeholder.com/200x250.png?text=Far+Cry+6"
+  },
+  {
+    "title": "Call of Duty: Modern Warfare",
+    "platforms": "PC, PS4, PS5, Xbox Series X/S, Xbox One",
+    "price": "$59.99",
+    "image": "https://via.placeholder.com/200x250.png?text=Call+of+Duty"
+  },
+  {
+    "title": "Battlefield 2042",
+    "platforms": "PC, PS5, PS4, Xbox Series X/S, Xbox One",
+    "price": "$29.99",
+    "image": "https://via.placeholder.com/200x250.png?text=Battlefield+2042"
+  },
+  {
+    "title": "FIFA 23",
+    "platforms": "PC, PS5, PS4, Xbox Series X/S, Xbox One",
+    "price": "$59.99",
+    "image": "https://via.placeholder.com/200x250.png?text=FIFA+23"
+  },
+  {
+    "title": "NBA 2K23",
+    "platforms": "PC, PS5, PS4, Xbox Series X/S, Xbox One",
+    "price": "$59.99",
+    "image": "https://via.placeholder.com/200x250.png?text=NBA+2K23"
+  },
+  {
+    "title": "Madden NFL 23",
+    "platforms": "PS5, PS4, Xbox Series X/S, Xbox One",
+    "price": "$59.99",
+    "image": "https://via.placeholder.com/200x250.png?text=Madden+NFL+23"
+  },
+  {
+    "title": "Forza Horizon 5",
+    "platforms": "PC, Xbox Series X/S, Xbox One",
+    "price": "$49.99",
+    "image": "https://via.placeholder.com/200x250.png?text=Forza+Horizon+5"
+  }
+]

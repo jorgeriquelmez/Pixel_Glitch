@@ -10,6 +10,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import AdminPage from './components/AdminPage';
 import CheckoutPage from './components/CheckoutPage';
+import GamesDisplay from './components/GamesDisplay';
 
 import './App.css';
 
@@ -22,6 +23,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/explorador" element={<ExplorerPage />} />
+            <Route path="/top-ventas" element={<GamesDisplay />} /> 
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/admin" element={<AdminPage />} />
