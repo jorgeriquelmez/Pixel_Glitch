@@ -31,12 +31,7 @@ const Header = () => {
             <Nav.Link href="/checkout">Checkout</Nav.Link>
           </Nav>
           <div className="d-flex align-items-center">
-            <div className="search-bar-container me-3">
-              <div className="search-icon">
-                <FontAwesomeIcon icon={faSearch} />
-              </div>
-              <input type="text" placeholder="Buscar" className="search-input" />
-            </div>
+
             <Link to="/carrito" className="shopping-cart-container">
               <FontAwesomeIcon icon={faShoppingCart} size="lg" />
             </Link>
