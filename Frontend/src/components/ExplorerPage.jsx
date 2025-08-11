@@ -22,6 +22,20 @@ const ExplorerPage = () => {
         </div>
       </Container>
 
+      <Container className="lanzamientos-section">
+        <h1 className="text-center my-4">Nuevos lanzamientos</h1>
+        <Row xs={1} md={2} lg={3} className="g-4">
+          {images.map((image) => (
+            <Col key={image.id}>
+              <Card className="h-100">
+                <Card.Img variant="top" src={image.url} />
+
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      </Container>
+
       <Container className="categories-section">
         <h2 className="text-center my-5">Categorías</h2>
         <Row className="mb-4">
@@ -68,21 +82,6 @@ const ExplorerPage = () => {
         </Row>
       </Container>
 
-      <Container>
-        <h1 className="text-center my-4">Nuevos lanzamientos</h1>
-        <Row xs={1} md={2} lg={3} className="g-4">
-          {images.map((image) => (
-            <Col key={image.id}>
-              <Card className="h-100">
-                <Card.Img variant="top" src={image.url} alt={image.comment} />
-                <Card.Body>
-                  <Card.Text>{image.comment}</Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
-      </Container>
 
     </div>
   );

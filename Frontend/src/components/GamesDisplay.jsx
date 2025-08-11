@@ -1,11 +1,14 @@
 import React, { useState, useMemo } from 'react';
 import gamesData from '../data/games.json';
+import { useSearchParams } from 'react-router-dom';
 import './GamesDisplay.css';
 
 const GamesDisplay = () => {
+  const [searchParams] = useSearchParams();
+  const initialGenre = searchParams.get('genre') || '';
   const [searchQuery, setSearchQuery] = useState('');
   const [platformFilter, setPlatformFilter] = useState('');
-  const [genreFilter, setGenreFilter] = useState('');
+  const [genreFilter, setGenreFilter] = useState(initialGenre);
   const [priceRangeFilter, setPriceRangeFilter] = useState('');
   const [sortBy, setSortBy] = useState('Precio');
 

@@ -1,5 +1,5 @@
 .categories-section {
-  padding-top: 0px; /* Espacio entre la galería y las categorías */
+  padding-top: 0px;
   text-align: center;
 }
 
@@ -60,4 +60,10 @@
   width: auto;
   max-height: 400px;
   object-fit: cover;
+}
+
+.lanzamientos-section img {
+  width: auto;
+  max-height: 150px;
+  object-fit: c;
 }
