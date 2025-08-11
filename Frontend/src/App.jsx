@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './components/HomePage';
 import ExplorerPage from './components/ExplorerPage';
+import GenrePage from './components/GenrePage';
 import Login from './components/Login';
 import Register from './components/Register';
 import AdminPage from './components/AdminPage';
@@ -23,6 +24,7 @@ const App = () => {
           <Routes>
             {/* <Route path="/" element={<HomePage />} /> */}
             <Route path="/" element={<ExplorerPage />} />
+            <Route path="/genre/:genreName" element={<GenrePage />} />
             <Route path="/top-ventas" element={<GamesDisplay />} /> 
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
