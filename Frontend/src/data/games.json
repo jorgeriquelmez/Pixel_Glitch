@@ -66,7 +66,7 @@
     "price": "$59.99",
     "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/callduty.jpg",
     "genre": "Acción",
-    "releaseDate": "October 25, 2019",
+    "releaseDate": "2019-10-25",
     "popularity": 9
   },
   {
@@ -76,7 +76,7 @@
     "price": "$29.99",
     "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/battlefield.jpg",
     "genre": "Acción",
-    "releaseDate": "November 19, 2021",
+    "releaseDate": "2021-11-19",
     "popularity": 6
   },
   {
@@ -86,7 +86,7 @@
     "price": "$59.99",
     "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/fc25.jpg",
     "genre": "Deportes",
-    "releaseDate": "Unreleased (Expected late 2024)",
+    "releaseDate": "2024-10-07",
     "popularity": 10
   },
   {
@@ -96,7 +96,7 @@
     "price": "$59.99",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnR-gt9AeX_FyZUq91lzhjF459hW6c45gJ8g&s",
     "genre": "Deportes",
-    "releaseDate": "September 9, 2022",
+    "releaseDate": "2022-09-07",
     "popularity": 8
   },
   {
@@ -112,8 +112,8 @@
   {
     "id": 13,
     "title": "The Last of Us Part I",
-    "platforms": ["PC", "PS5"],
-    "price": 69.99,
+    "platforms": "PC, PS5",
+    "price": "$69.99",
     "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/lou.jpg",
     "genre": "Acción",
     "releaseDate": "2023-03-28",
@@ -122,8 +122,8 @@
   {
     "id": 14,
     "title": "Elden Ring",
-    "platforms": ["PC", "PS4", "PS5", "Xbox One", "Xbox Series X/S"],
-    "price": 59.99,
+    "platforms": "PC, PS4, PS5, Xbox One, Xbox Series X/S",
+    "price": "$59.99",
     "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/elder.jpg",
     "genre": "RPG",
     "releaseDate": "2022-02-25",
@@ -132,8 +132,8 @@
   {
     "id": 15,
     "title": "Cyberpunk 2",
-    "platforms": ["PC", "PS5", "Xbox Series X/S"],
-    "price": 49.99,
+    "platforms": "PC, PS5, Xbox Series X/S",
+    "price": "$49.99",
     "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/ciber2.jpg",
     "genre": "RPG",
     "releaseDate": "2025-12-10",
@@ -142,8 +142,8 @@
   {
     "id": 16,
     "title": "Final Fantasy XVI",
-    "platforms": ["PS5", "PC"],
-    "price": 69.99,
+    "platforms": "PS5, PC",
+    "price": "$69.99",
     "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/ff.jpeg",
     "genre": "RPG",
     "releaseDate": "2016-02-26",
@@ -152,8 +152,8 @@
   {
     "id": 17,
     "title": "Stardew Valley",
-    "platforms": ["PC", "PS4", "Xbox One", "Nintendo Switch"],
-    "price": 14.99,
+    "platforms": "PC, PS4, Xbox One, Nintendo Switch",
+    "price": "$14.99",
     "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/stardew.jpeg",
     "genre": "Simulador",
     "releaseDate": "2016-02-26",
@@ -162,8 +162,8 @@
   {
     "id": 18,
     "title": "The Witcher 2: Assassins of Kings",
-    "platforms": ["PC", "PS4", "PS5", "Xbox One", "Xbox Series X/S", "Nintendo Switch"],
-    "price": 29.99,
+    "platforms": "PC, PS4, PS5, Xbox One, Xbox Series X/S, Nintendo Switch",
+    "price": "$29.99",
     "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/witcher2.jpeg",
     "genre": "RPG",
     "releaseDate": "2015-05-19",
@@ -172,8 +172,8 @@
   {
     "id": 19,
     "title": "Hades",
-    "platforms": ["PC", "PS4", "PS5", "Xbox One", "Xbox Series X/S", "Nintendo Switch"],
-    "price": 24.99,
+    "platforms": "PC, PS4, PS5, Xbox One, Xbox Series X/S, Nintendo Switch",
+    "price": "$24.99",
     "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/hades.jpeg",
     "genre": "Acción",
     "releaseDate": "2020-09-17",
@@ -182,8 +182,8 @@
   {
     "id": 20,
     "title": "Minecraft",
-    "platforms": ["PC", "PS4", "Xbox One", "Nintendo Switch", "Mobile"],
-    "price": 26.95,
+    "platforms": "PC, PS4, Xbox One, Nintendo Switch, Mobile",
+    "price": "$26.95",
     "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/minecraft.jpeg",
     "genre": "Simulador",
     "releaseDate": "2011-11-18",
@@ -192,8 +192,8 @@
   {
     "id": 21,
     "title": "God of War Ragnarök",
-    "platforms": ["PS4", "PS5"],
-    "price": 69.99,
+    "platforms":"PS4, PS5",
+    "price": "$69.99",
     "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/GOW.jpeg",
     "genre": "Acción",
     "releaseDate": "2022-11-09",
@@ -202,8 +202,8 @@
   {
     "id": 22,
     "title": "Hollow Knight",
-    "platforms": ["PC", "PS4", "Xbox One", "Nintendo Switch"],
-    "price": 14.99,
+    "platforms":"PC, PS4, Xbox One, Nintendo Switch",
+    "price": "$14.99",
     "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/367520/header.jpg?t=1695270428",
     "genre": "Aventura",
     "releaseDate": "2017-02-24",
