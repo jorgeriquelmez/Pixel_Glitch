@@ -33,3 +33,15 @@ INSERT INTO juegos (id, title, platforms, price, image, genre, release_date, pop
 (20, 'Minecraft', 'PC, PS4, Xbox One, Nintendo Switch, Mobile', 26.95, 'https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/minecraft.jpeg', 'Simulador', '2011-11-18', 10.0),
 (21, 'God of War Ragnarök', 'PS4, PS5', 69.99, 'https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/GOW.jpeg', 'Acción', '2022-11-09', 9.6),
 (22, 'Hollow Knight', 'PC, PS4, Xbox One, Nintendo Switch', 14.99, 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/367520/header.jpg?t=1695270428', 'Aventura', '2017-02-24', 9.3);
+
+
+
+--tabla para login 
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
