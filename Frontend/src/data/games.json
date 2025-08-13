@@ -4,7 +4,7 @@
     "title": "Cyberpunk 2077",
     "platforms": "PC, PS5, Xbox Series X/S",
     "price": "$59.99",
-    "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/ciberpunk.jpg",
+    "image": "https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/ciberpunk.jpg",
     "genre": "RPG",
     "releaseDate": "2020-12-10",
     "popularity": 8.5
@@ -14,7 +14,7 @@
     "title": "The Witcher 3: Wild Hunt",
     "platforms": "PC, PS4, Xbox One, Switch",
     "price": "$39.99",
-    "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/witcher.jpeg",
+    "image": "https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/witcher.jpeg",
     "genre": "RPG",
     "releaseDate": "2015-05-19",
     "popularity": 9.8
@@ -24,7 +24,7 @@
     "title": "Red Dead Redemption 2",
     "platforms": "PC, PS4, Xbox One",
     "price": "$49.99",
-    "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/juego3.jpeg",
+    "image": "https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/juego3.jpeg",
     "genre": "Aventura",
     "releaseDate": "2018-10-26",
     "popularity": 9.6
@@ -34,7 +34,7 @@
     "title": "Grand Theft Auto V",
     "platforms": "PC, PS4, Xbox One",
     "price": "$19.99",
-    "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/gta.jpeg",
+    "image": "https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/gta.jpeg",
     "genre": "Acción",
     "releaseDate": "2013-09-17",
     "popularity": 9.7
@@ -44,7 +44,7 @@
     "title": "Assassin's Creed Valhalla",
     "platforms": "PC, PS4, PS5, Xbox Series X/S, Xbox One",
     "price": "$29.99",
-    "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/assessin.jpeg",
+    "image": "https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/assessin.jpeg",
     "genre": "RPG",
     "releaseDate": "2020-11-10",
     "popularity": 8.1
@@ -54,7 +54,7 @@
     "title": "Far Cry 6",
     "platforms": "PC, PS5, PS4, Xbox Series X/S, Xbox One",
     "price": "$29.99",
-    "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/farcry.jpeg",
+    "image": "https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/farcry.jpeg",
     "genre": "Acción",
     "releaseDate": "2021-10-07",
     "popularity": 7.8
@@ -64,7 +64,7 @@
     "title": "Call of Duty: Modern Warfare",
     "platforms": "PC, PS4, Xbox One, Xbox Series X/S",
     "price": "$59.99",
-    "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/callduty.jpg",
+    "image": "https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/callduty.jpg",
     "genre": "Acción",
     "releaseDate": "2019-10-25",
     "popularity": 9
@@ -74,7 +74,7 @@
     "title": "Battlefield 2042",
     "platforms": "PC, PS4, PS5, Xbox Series X/S, Xbox One",
     "price": "$29.99",
-    "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/battlefield.jpg",
+    "image": "https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/battlefield.jpg",
     "genre": "Acción",
     "releaseDate": "2021-11-19",
     "popularity": 6
@@ -84,7 +84,7 @@
     "title": "FIFA 25",
     "platforms": "PC, PS4, PS5, Xbox Series X/S, Xbox One",
     "price": "$59.99",
-    "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/fc25.jpg",
+    "image": "https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/fc25.jpg",
     "genre": "Deportes",
     "releaseDate": "2024-10-07",
     "popularity": 10
@@ -104,7 +104,7 @@
     "title": "Madden NFL 23",
     "platforms": "PC, PS4, PS5, Xbox Series X/S, Xbox One",
     "price": "$60.00",
-    "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/nfl23.jpg",
+    "image": "https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/nfl23.jpg",
     "genre": "Deportes",
     "releaseDate": "2022-08-19",
     "popularity": 9
@@ -114,7 +114,7 @@
     "title": "The Last of Us Part I",
     "platforms": "PC, PS5",
     "price": "$69.99",
-    "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/lou.jpg",
+    "image": "https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/lou.jpg",
     "genre": "Acción",
     "releaseDate": "2023-03-28",
     "popularity": 9.5
@@ -124,7 +124,7 @@
     "title": "Elden Ring",
     "platforms": "PC, PS4, PS5, Xbox One, Xbox Series X/S",
     "price": "$59.99",
-    "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/elder.jpg",
+    "image": "https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/elder.jpg",
     "genre": "RPG",
     "releaseDate": "2022-02-25",
     "popularity": 9.8
@@ -134,7 +134,7 @@
     "title": "Cyberpunk 2",
     "platforms": "PC, PS5, Xbox Series X/S",
     "price": "$49.99",
-    "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/ciber2.jpg",
+    "image": "https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/ciber2.jpg",
     "genre": "RPG",
     "releaseDate": "2025-12-10",
     "popularity": 8.2
@@ -144,7 +144,7 @@
     "title": "Final Fantasy XVI",
     "platforms": "PS5, PC",
     "price": "$69.99",
-    "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/ff.jpeg",
+    "image": "https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/ff.jpeg",
     "genre": "RPG",
     "releaseDate": "2016-02-26",
     "popularity": 9.4
@@ -154,7 +154,7 @@
     "title": "Stardew Valley",
     "platforms": "PC, PS4, Xbox One, Nintendo Switch",
     "price": "$14.99",
-    "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/stardew.jpeg",
+    "image": "https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/stardew.jpeg",
     "genre": "Simulador",
     "releaseDate": "2016-02-26",
     "popularity": 9.4
@@ -164,7 +164,7 @@
     "title": "The Witcher 2: Assassins of Kings",
     "platforms": "PC, PS4, PS5, Xbox One, Xbox Series X/S, Nintendo Switch",
     "price": "$29.99",
-    "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/witcher2.jpeg",
+    "image": "https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/witcher2.jpeg",
     "genre": "RPG",
     "releaseDate": "2015-05-19",
     "popularity": 9.7
@@ -174,7 +174,7 @@
     "title": "Hades",
     "platforms": "PC, PS4, PS5, Xbox One, Xbox Series X/S, Nintendo Switch",
     "price": "$24.99",
-    "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/hades.jpeg",
+    "image": "https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/hades.jpeg",
     "genre": "Acción",
     "releaseDate": "2020-09-17",
     "popularity": 9.1
@@ -184,7 +184,7 @@
     "title": "Minecraft",
     "platforms": "PC, PS4, Xbox One, Nintendo Switch, Mobile",
     "price": "$26.95",
-    "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/minecraft.jpeg",
+    "image": "https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/minecraft.jpeg",
     "genre": "Simulador",
     "releaseDate": "2011-11-18",
     "popularity": 10.0
@@ -194,7 +194,7 @@
     "title": "God of War Ragnarök",
     "platforms":"PS4, PS5",
     "price": "$69.99",
-    "image": "https://github.com/jorgeriquelmez/imagenes/blob/main/GOW.jpeg",
+    "image": "https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/GOW.jpeg",
     "genre": "Acción",
     "releaseDate": "2022-11-09",
     "popularity": 9.6
