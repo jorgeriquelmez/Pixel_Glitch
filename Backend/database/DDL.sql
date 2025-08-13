@@ -11,7 +11,7 @@ CREATE TABLE games (
     popularity NUMERIC(3, 1)
 );
 
-INSERT INTO juegos (id, title, platforms, price, image, genre, release_date, popularity) VALUES
+INSERT INTO games (id, title, platforms, price, image, genre, release_date, popularity) VALUES
 (1, 'Cyberpunk 2077', 'PC, PS5, Xbox Series X/S', 59.99, 'https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/ciberpunk.jpg', 'RPG', '2020-12-10', 8.5),
 (2, 'The Witcher 3: Wild Hunt', 'PC, PS4, Xbox One, Switch', 39.99, 'https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/witcher.jpeg', 'RPG', '2015-05-19', 9.8),
 (3, 'Red Dead Redemption 2', 'PC, PS4, Xbox One', 49.99, 'https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/juego3.jpeg', 'Aventura', '2018-10-26', 9.6),
@@ -39,11 +39,11 @@ INSERT INTO juegos (id, title, platforms, price, image, genre, release_date, pop
 --tabla para login 
 
 CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 );
 
 -- Datos iniciales (contraseñas: pixel1, pixel2, pixel3, pixel4)
