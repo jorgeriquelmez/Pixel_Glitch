@@ -45,3 +45,11 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+-- Datos iniciales (contraseñas: pixel1, pixel2, pixel3, pixel4)
+
+INSERT INTO users (email, password) VALUES
+('admin@pixelglitch.com', '$2b$12$24eoPx6nbQYiF8WyrpsJneL/vmlp6o.R.6qrnLm04c/lftnk5wyBm'), --pixel1
+('jorge@pixelglitch.com', '$2b$12$BPpYeBZKqGMcJ5QYGSTV2OztfwoivnxFnZ8HwHB8PiazIme/ZoFv2'), --pixel2
+('lucas@pixelglitch.com', '$2b$12$8BAAB6edGNHHgVB/ELOEpOAWXx13wptAceFPspM0LOU.OhETpnWyu'), --pixel3
+('zamora@pixelglitch.com', '$2b$12$Hc8Ke.O.CXmlqIDLzBWU4eSq6rvAveCiS/fdxruav58d7fS4J3QzO'); --pixel4
