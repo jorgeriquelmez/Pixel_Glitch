@@ -1,0 +1,88 @@
+*{
+    color: #ffff;
+    background-color: #121A21;
+}
+
+.gameCard{
+    text-align: center  ;
+}
+
+.gameDesc{
+    padding: 2%;
+}
+
+
+.banner{
+    text-align: start;
+    padding-left: 2%;
+}
+
+.gameImg{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.gameImg{img{
+    border-radius: 50px;
+}}
+
+.puntuacion{
+    padding-left: 3%;
+    display: flex
+}
+
+.evaluacion{h1,p{
+    text-align: center;
+}}
+
+.barContainer{
+    padding-left: 2em;
+    width: 30%;
+}
+.comentarios{
+    padding-left: 2%;
+    padding-top: 2%;
+}
+
+.precio{
+    padding-left: 2%;
+    margin-top: 5rem;
+}
+.precio{.btn{
+    display: flex;
+    background-color:#0f7fdb;
+    color: #ffffff;
+    border-radius: 60px;
+}}
+
+.botones{
+    display: flex;
+    gap: 40px;
+}
+
+.reacciones {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  align-items: center;
+  color: #ccc;
+}
+
+.reacciones .like, 
+.reacciones .dislike {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+}
+
+.reacciones .like:hover {
+  color: #4cafef;
+}
+
+.reacciones .dislike:hover {
+  color: #e74c3c;
+}

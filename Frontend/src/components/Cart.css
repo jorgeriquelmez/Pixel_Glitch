@@ -1,0 +1,100 @@
+/* =========================
+   TABLA DEL CARRITO
+========================= */
+.tabla-carrito {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+  background-color: #0e1621;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tabla-carrito th {
+  padding: 1rem;
+  text-align: left;
+  background-color: #101b29;
+}
+
+.tabla-carrito td {
+  padding: 1rem;
+  border-top: 1px solid #1e293b;
+}
+
+.tabla-carrito .plataforma {
+  color: #3b82f6;
+}
+
+/* =========================
+   SECCIÓN DEL CARRITO
+========================= */
+.carro-compras {
+  padding: 2rem;
+}
+
+.carro-compras h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+/* =========================
+   RESUMEN DE COMPRA
+========================= */
+.resumen-compra {
+  max-width: 300px;
+}
+
+.resumen-compra h2 {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.resumen-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.resumen-item.total {
+  font-weight: bold;
+}
+
+.resumen-compra button {
+  background-color: #2563eb;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.resumen-compra button:hover {
+  background-color: #1d4ed8;
+}
+
+/* =========================
+   SWEET ALERT PERSONALIZADO
+========================= */
+.mi-popup {
+  background: #1d4ed8 !important;
+  border-radius: 15px !important;
+  font-family: 'Arial', sans-serif !important;
+  border: 3px solid #ffffff !important;
+}
+
+.mi-titulo {
+  color: #ffffff !important;
+  font-weight: bold !important;
+  font-size: 1.8rem !important;
+  background-color: #1d4ed8 !important;
+}
+
+.mi-boton-confirmar {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  font-weight: bold !important;
+  border-radius: 8px !important;
+  padding: 10px 25px !important;
+}
