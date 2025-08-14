@@ -39,13 +39,12 @@ INSERT INTO juegos (id, title, platforms, price, image, genre, release_date, pop
 --tabla para login 
 
 CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id SERIAL PRIMARY KEY, -- autoincremental en PostgreSQL
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
 -- Datos iniciales (contraseñas: pixel1, pixel2, pixel3, pixel4)
 
 INSERT INTO users (email, password) VALUES
