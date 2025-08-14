@@ -1,0 +1,5 @@
+
+[
+  { "id": 1, "nombre": "Cyberpunk 2077", "plataforma": "PC", "cantidad": 1, "precio": 59.99 },
+  { "id": 2, "nombre": "The Witcher 3: Wild Hunt", "plataforma": "PS5", "cantidad": 1, "precio": 39.99 }
+]

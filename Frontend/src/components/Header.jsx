@@ -29,10 +29,11 @@ const Header = () => {
             <Nav.Link href="/register">registrarse</Nav.Link>
             <Nav.Link href="/admin">Administrador</Nav.Link>
             <Nav.Link href="/checkout">Checkout</Nav.Link>
+            <Nav.Link href="/ReviewPage">Reseñas</Nav.Link>
           </Nav>
           <div className="d-flex align-items-center">
 
-            <Link to="/carrito" className="shopping-cart-container">
+            <Link to="/cart" className="shopping-cart-container">
               <FontAwesomeIcon icon={faShoppingCart} size="lg" />
             </Link>
           </div>

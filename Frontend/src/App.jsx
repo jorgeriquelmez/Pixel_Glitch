@@ -12,7 +12,8 @@ import Register from './components/Register';
 import AdminPage from './components/AdminPage';
 import CheckoutPage from './components/CheckoutPage';
 import GamesDisplay from './components/GamesDisplay';
-
+import Reviews from './components/ReviewPage'
+import Cart from './components/Cart'
 import './App.css';
 
 const App = () => {
@@ -30,6 +31,8 @@ const App = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/ReviewPage" element={<Reviews />} />
           </Routes>
         </main>
         <Footer />

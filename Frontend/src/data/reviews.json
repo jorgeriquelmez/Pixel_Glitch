@@ -1,0 +1,71 @@
+{
+  "producto": {
+    "id": 101,
+    "nombre": "Red Dead Redemption II",
+    "descripcion": "Red Dead Redemption 2 es un videojuego de acción-aventura de mundo abierto desarrollado y publicado por Rockstar Games. El juego es la tercera entrada de la serie Red Dead y una precuela del juego Red Dead Redemption de 2010. La historia está ambientada en una representación ficticia de los Estados Unidos en 1899 y sigue las hazañas de Arthur Morgan, un forajido y miembro de la pandilla Van der Linde, que debe lidiar con el declive del Salvaje Oeste mientras intenta sobrevivir contra las fuerzas gubernamentales, pandillas rivales y otros adversarios. El juego se presenta a través de perspectivas en primera y tercera persona, y el jugador puede recorrer libremente su mundo abierto interactivo. Los elementos del juego incluyen tiroteos, robos, caza, paseos a caballo, interacción con personajes que no son jugadores y mantener el índice de honor del personaje a través de elecciones y hechos morales. Un sistema de recompensas gobierna la respuesta de las fuerzas del orden y los cazarrecompensas a los crímenes cometidos por el jugador.",
+    "precio": 49.99,
+    "stock": 20,
+    "imagen": "https://hqcovers.net/wp-content/uploads/2019/10/rdr2_banner.jpg",
+    "ratingPromedio": 4.7,
+    "totalReviews": 200,
+    "distribucionEstrellas": {
+      "5": 94,
+      "4": 60,
+      "3": 16,
+      "2": 7,
+      "1": 5
+    }
+  },
+  "comentarios": [
+    {
+      "id": 1,
+      "usuario": "Alex R.",
+      "fecha": "2025-07-15",
+      "puntaje": 5,
+      "comentario": "Lorem ipsum dolor sit amet consectetur adipiscing elit ornare metus, fusce netus sed scelerisque rutrum id ridiculus",
+      "likes": 50,
+      "dislikes": 6,
+      "avatar": "https://randomuser.me/api/portraits/men/32.jpg"
+    },
+    {
+      "id": 2,
+      "usuario": "Sarah M.",
+      "fecha": "2025-07-10",
+      "puntaje": 4,
+      "comentario": "Lorem ipsum dolor sit amet consectetur adipiscing elit ornare metus, fusce netus sed scelerisque rutrum id ridiculus",
+      "likes": 45,
+      "dislikes": 9,
+      "avatar": "https://randomuser.me/api/portraits/women/44.jpg"
+    },
+    {
+      "id": 3,
+      "usuario": "Chris L.",
+      "fecha": "2025-07-05",
+      "puntaje": 3,
+      "comentario": "Lorem ipsum dolor sit amet consectetur adipiscing elit ornare metus, fusce netus sed scelerisque rutrum id ridiculus",
+      "likes": 19,
+      "dislikes": 20,
+      "avatar": "https://randomuser.me/api/portraits/men/88.jpg"
+    },
+    {
+      "id": 4,
+      "usuario": "Emma T.",
+      "fecha": "2025-06-30",
+      "puntaje": 2,
+      "comentario": "Lorem ipsum dolor sit amet consectetur adipiscing elit ornare metus, fusce netus sed scelerisque rutrum id ridiculus",
+      "likes": 8,
+      "dislikes": 15,
+      "avatar": "https://randomuser.me/api/portraits/women/55.jpg"
+    },
+    {
+      "id": 5,
+      "usuario": "Jorge M.",
+      "fecha": "2025-06-20",
+      "puntaje": 1,
+      "comentario": "Lorem ipsum dolor sit amet consectetur adipiscing elit ornare metus, fusce netus sed scelerisque rutrum id ridiculus",
+      "likes": 2,
+      "dislikes": 30,
+      "avatar": "https://randomuser.me/api/portraits/men/14.jpg"
+    }
+  ]
+}
