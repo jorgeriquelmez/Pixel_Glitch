@@ -25,7 +25,7 @@ const App = () => {
           <Routes>
             {/* <Route path="/" element={<HomePage />} /> */}
             <Route path="/" element={<ExplorerPage />} />
-            <Route path="/genre/:genreName" element={<GenrePage />} />
+            <Route path="/genre/:category" element={<GenrePage />} />
             <Route path="/top-ventas" element={<GamesDisplay />} /> 
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

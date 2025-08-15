@@ -26,7 +26,7 @@ const Header = () => {
             <Nav.Link href="/">Inicio</Nav.Link>
             <Nav.Link href="/top-ventas">Sala de ventas</Nav.Link>
             <Nav.Link href="/login">Iniciar sesión</Nav.Link>
-            <Nav.Link href="/register">registrarse</Nav.Link>
+            {/* <Nav.Link href="/register">registrarse</Nav.Link> */}
             <Nav.Link href="/admin">Administrador</Nav.Link>
             <Nav.Link href="/checkout">Checkout</Nav.Link>
             <Nav.Link href="/ReviewPage">Reseñas</Nav.Link>
