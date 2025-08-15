@@ -2,39 +2,64 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import portadaImage from '../assets/portada.jpeg';
 import data from '../data/data.json';
+import games from '../data/games.json';
 import './ExplorerPage.css';
 
 const ExplorerPage = () => {
-  const [images, setImages] = useState([]);
+const [images, setImages] = useState([]);
 
-  useEffect(() => {
-    setImages(data.images);
-  }, []);
+useEffect(() => {
+setImages(data.images);
+}, []);
+
+const sortedGames = games.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+const latestGames = sortedGames.slice(0, 4); 
+const sortedByPopularity = [...games].sort((a, b) => b.popularity - a.popularity);
+const topSellingGames = sortedByPopularity.slice(0, 4); 
 
   return (
     <div className="explorer-container">
       <Container className="portada-section">
         <div className="portada-wrapper">
           <img src={portadaImage} alt="Descripción de la imagen" className="portada-image" />
-          <div className="portada-text">
+          {/* <div className="portada-text">
             <span>¡Bienvenido a los videojuegos!</span>
-          </div>
+          </div> */}
         </div>
       </Container>
 
-      <Container className="lanzamientos-section">
-        <h1 className="text-center my-4">Nuevos lanzamientos</h1>
-        <Row xs={1} md={2} lg={3} className="g-4">
-          {images.map((image) => (
-            <Col key={image.id}>
-              <Card className="h-100">
-                <Card.Img variant="top" src={image.url} />
-
-              </Card>
-            </Col>
-          ))}
-        </Row>
-      </Container>
+      <Container className="lanzamientos-section">
+        <h1 className="text-center my-4">Nuevos lanzamientos</h1>
+        <Row xs={1} md={2} lg={4} className="g-4 justify-content-center"> 
+            {latestGames.map((game) => (
+                <Col key={game.id}>
+                    <Card className="h-100">
+                        <Card.Img variant="top" src={game.image} />
+                        <Card.Body>
+                            <Card.Title>{game.title}</Card.Title>
+                        </Card.Body>
+                     </Card>
+                </Col>
+             ))}
+        </Row>
+      </Container>
+            <Container className="top-section">
+        <h1 className="text-center my-4">Top Ventas</h1>
+        <Row xs={1} md={2} lg={4} className="g-4 justify-content-center"> 
+            {topSellingGames.map((game) => (
+                <Col key={game.id}>
+                    <Card className="h-100 card-game">
+                                <div className="image-container"> 
+                                    <Card.Img variant="top" src={game.image} />
+                                </div>
+                        <Card.Body>
+                            <Card.Title>{game.title}</Card.Title>
+                        </Card.Body>
+                     </Card>
+                </Col>
+             ))}
+        </Row>
+      </Container>
 
       <Container className="categories-section">
         <h2 className="text-center my-5">Categorías</h2>
