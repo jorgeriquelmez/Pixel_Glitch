@@ -39,13 +39,15 @@ INSERT INTO games (id, title, platforms, price, image, genre, release_date, popu
 --tabla para login 
 
 CREATE TABLE users (
+
+
     id SERIAL PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
-);
 
+);
 -- Datos iniciales (contraseñas: pixel1, pixel2, pixel3, pixel4)
 
 INSERT INTO users (email, password) VALUES
