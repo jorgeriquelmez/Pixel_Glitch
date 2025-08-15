@@ -40,3 +40,8 @@
 .bg-custom-color {
   background-color: #121a21 !important;
 }
+.sesion-links {
+  display: flex;
+  align-items: center; /* Opcional: Centra verticalmente los elementos */
+  gap: 15px; /* Opcional: Añade un espacio entre los elementos */
+}
