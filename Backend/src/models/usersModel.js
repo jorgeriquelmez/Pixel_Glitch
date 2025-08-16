@@ -1,5 +1,5 @@
 import { supabase } from '../../config/supabase.js';
-
+import bcrypt from 'bcrypt';
 // Registro de usuario
 export const registerUser = async (req, res) => {
   try {
@@ -27,21 +27,24 @@ export const registerUser = async (req, res) => {
 
 // Login de usuario
 export const loginUser = async ({ email, password }) => {
-  return await supabase.auth.signInWithPassword({ email, password });
-};
-
-// Obtener perfil del usuario logueado
-export const getUserProfile = async (token) => {
-  return await supabase.auth.getUser(token);
-};
-
-export const getAllUsers = async () => {
+  // Buscar el usuario por email
   const { data, error } = await supabase
     .from('users')
-    .select('id, email, created_at, updated_at'); // no traemos password por seguridad
+    .select('*')
+    .eq('email', email)
+    .single(); // devuelve un solo registro
 
-  if (error) throw error;
-  return data;
+  if (error || !data) {
+    return { data: null, error: new Error('Usuario no encontrado') };
+  }
+
+  // Comparar la contraseña enviada con el hash de la DB
+  const match = await bcrypt.compare(password, data.password);
+  if (!match) {
+    return { data: null, error: new Error('Credenciales inválidas') };
+  }
+
+  return { data, error: null };
 };
 
 
@@ -94,4 +97,10 @@ export const updateUser = async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
+};
+
+export const getAllUsers = async () => {
+  const { data, error } = await supabase.from('users').select('*');
+  if (error) throw new Error(error.message);
+  return data;
 };
