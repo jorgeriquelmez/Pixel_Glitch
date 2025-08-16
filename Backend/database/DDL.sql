@@ -70,3 +70,13 @@ CREATE TABLE checkout (
   expiracion TEXT NOT NULL,
   cvv TEXT NOT NULL
 );
+
+-- tabla para almacenar juegos en la tienda
+CREATE TABLE IF NOT EXISTS games (
+  id SERIAL PRIMARY KEY,
+  nombre TEXT NOT NULL,
+  plataforma TEXT NOT NULL,
+  precio NUMERIC(10, 2) NOT NULL,
+  imagen TEXT
+);
+
