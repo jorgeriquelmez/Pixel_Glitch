@@ -1,4 +1,4 @@
-import { supabase } from '../config/supabase.js'
+import { supabase } from '../../config/supabase.js';
 
 export const getAllCheckouts = async () => {
   const { data, error } = await supabase.from('checkout').select('*')

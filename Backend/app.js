@@ -1,7 +1,9 @@
 import express from 'express';
 import usersRoutes from './src/routes/userRoutes.js';
 import checkoutRoutes from './src/routes/checkoutRoutes.js';
-import gamesRoutes from './src/routes/gamesRoutes.js'; 
+import gamesRoutes from './src/routes/gameRoutes.js'; 
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
 

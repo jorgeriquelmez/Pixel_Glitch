@@ -1,5 +1,6 @@
 import { supabase } from '../../config/supabase.js';
-import { loginUser, getUserProfile, getAllUsers } from '../models/usersModel.js';
+import { loginUser, getAllUsers } from '../models/usersModel.js';
+import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 
 // POST /users/register
@@ -25,9 +26,23 @@ export const register = async (req, res) => {
 // POST /users/login
 export const login = async (req, res) => {
   const { email, password } = req.body;
+
   const { data, error } = await loginUser({ email, password });
-  if (error) return res.status(401).json({ error: error.message });
-  res.json({ message: 'Login exitoso', data });
+  if (error || !data) {
+    return res.status(401).json({ error: error.message });
+  }
+
+  const token = jwt.sign(
+    { id: data.id, email: data.email },
+    process.env.JWT_SECRET,
+    { expiresIn: '1h' }
+  );
+
+  res.json({
+    message: 'Login exitoso',
+    token,
+    user: { id: data.id, email: data.email }
+  });
 };
 
 // GET /users/profile
@@ -96,3 +111,4 @@ export const updateUser = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
