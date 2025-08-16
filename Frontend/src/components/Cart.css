@@ -74,13 +74,16 @@
   background-color: #1d4ed8;
 }
 
+.resumen-compra button {
+  margin-top: 40px;
+}
 /* =========================
    SWEET ALERT PERSONALIZADO
 ========================= */
 .mi-popup {
   background: #1d4ed8 !important;
   border-radius: 15px !important;
-  font-family: 'Arial', sans-serif !important;
+  font-family: "Arial", sans-serif !important;
   border: 3px solid #ffffff !important;
 }
 

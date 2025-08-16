@@ -32,7 +32,7 @@ const Header = () => {
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/">Inicio</Nav.Link>
             <Nav.Link as={Link} to="/top-ventas">Sala de ventas</Nav.Link>
-            <Nav.Link as={Link} to="/checkout">Checkout</Nav.Link>
+            {/* <Nav.Link as={Link} to="/checkout">Checkout</Nav.Link> */}
             <Nav.Link as={Link} to="/ReviewPage">Reseñas</Nav.Link>
           </Nav>
                     <div className="d-flex align-items-center">

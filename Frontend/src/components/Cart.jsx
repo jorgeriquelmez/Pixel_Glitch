@@ -1,85 +1,75 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import TablaCarrito from "./Cart/Tabla";
 import Swal from "sweetalert2";
 import "./Cart.css";
 import miLogo from "../assets/logo2.png";
-import productosIniciales from "../data/cart.json"; // Solo para pruebas locales
+import productosIniciales from "../data/cart.json";
 import axios from "axios";
+import { AppContext } from '../context/AppContext';
 
 const Cart = () => {
-  const navigate = useNavigate();
-  const [productos, setProductos] = useState([]);
+    const navigate = useNavigate();
+    const { cart, setCart, subtotal, total } = useContext(AppContext);
 
-  useEffect(() => {
-    const cargarProductos = async () => {
-      try {
-        /*
-        const res = await axios.get("", {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`, // Si tu API necesita auth
-          },
-        });
-        setProductos(res.data);
-        return;
-        */
-        setProductos(productosIniciales);
+    useEffect(() => {
+        const cargarProductos = async () => {
+            try {
+                setCart(productosIniciales);
+            } catch (error) {
+                console.error("Error cargando productos:", error);
+            }
+        };
 
-      } catch (error) {
-        console.error("Error cargando productos:", error);
-      }
+        cargarProductos();
+    }, [setCart]);
+
+    const manejarIrAPagar = () => {
+        if (cart.length === 0) {
+            Swal.fire({
+                title: "Tu carrito está vacío",
+                text: "Agrega productos para continuar",
+                imageUrl: miLogo,
+                imageWidth: 80,
+                imageHeight: 80,
+                imageAlt: "Pixel Glitch Logo",
+                confirmButtonText: "Aceptar",
+                customClass: {
+                    popup: 'mi-popup',
+                    title: 'mi-titulo',
+                    confirmButton: 'mi-boton-confirmar'
+                }
+            });
+        } else {
+            navigate("/checkout");
+        }
     };
 
-    cargarProductos();
-  }, []);
+    return (
+        <main className="carro-compras">
+            <h1>Carro de compras</h1>
 
-  const subtotal = productos.reduce((acc, p) => acc + p.precio * p.cantidad, 0);
-  const envio = 0;
-  const total = subtotal + envio;
+            <TablaCarrito productos={cart} />
 
-  const manejarCompraGratis = () => {
-    Swal.fire({
-      title: "Oops, compra gratis!!",
-      imageUrl: miLogo,
-      imageWidth: 80,
-      imageHeight: 80,
-      imageAlt: "Imagen personalizada",
-      confirmButtonText: "Aceptar",
-      customClass: {
-        popup: 'mi-popup',
-        title: 'mi-titulo',
-        confirmButton: 'mi-boton-confirmar'
-      }
-    }).then(() => {
-      setProductos([])
-    })
-  }
+            <section className="resumen-compra">
+                <h2>Resumen de compra</h2>
+                <div className="resumen-item">
+                    <span>Subtotal</span>
+                    <span>${subtotal.toFixed(2)}</span>
+                </div>
+                <div className="resumen-item">
+                    <span>Envío</span>
+                    <span>Gratis</span>
+                </div>
+                <div className="resumen-item total">
+                    <span>Total</span>
+                    <span>${total.toFixed(2)}</span>
+                </div>
 
-  return (
-    <main className="carro-compras">
-      <h1>Carro de compras</h1>
-
-      <TablaCarrito productos={productos} />
-
-      <section className="resumen-compra">
-        <h2>Resumen de compra</h2>
-        <div className="resumen-item">
-          <span>Subtotal</span>
-          <span>${subtotal.toFixed(2)}</span>
-        </div>
-        <div className="resumen-item">
-          <span>Envío</span>
-          <span>{envio === 0 ? "Gratis" : `$${envio.toFixed(2)}`}</span>
-        </div>
-        <div className="resumen-item total">
-          <span>Total</span>
-          <span>${total.toFixed(2)}</span>
-        </div>
-
-        <button onClick={manejarCompraGratis}>Ir a Pagar</button>
-      </section>
-    </main>
-  );
+                <button onClick={manejarIrAPagar}>Ir a Pagar</button>
+            </section>
+        </main>
+    );
 };
 
 export default Cart;
