@@ -55,3 +55,18 @@ INSERT INTO users (email, password) VALUES
 ('jorge@pixelglitch.com', '$2b$12$BPpYeBZKqGMcJ5QYGSTV2OztfwoivnxFnZ8HwHB8PiazIme/ZoFv2'), --pixel2
 ('lucas@pixelglitch.com', '$2b$12$8BAAB6edGNHHgVB/ELOEpOAWXx13wptAceFPspM0LOU.OhETpnWyu'), --pixel3
 ('zamora@pixelglitch.com', '$2b$12$Hc8Ke.O.CXmlqIDLzBWU4eSq6rvAveCiS/fdxruav58d7fS4J3QzO'); --pixel4
+
+--tabla para checkout
+
+CREATE TABLE checkout (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id),
+  nombre TEXT NOT NULL,
+  direccion TEXT NOT NULL,
+  ciudad TEXT NOT NULL,
+  codigo_postal TEXT NOT NULL,
+  telefono TEXT NOT NULL,
+  tarjeta TEXT NOT NULL,
+  expiracion TEXT NOT NULL,
+  cvv TEXT NOT NULL
+);
