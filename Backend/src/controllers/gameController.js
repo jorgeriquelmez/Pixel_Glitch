@@ -1,7 +1,8 @@
 import {
     getAllGames,
     createGame,
-    deleteGame
+    deleteGame,
+    getGameByIdWithComments
   } from '../models/gameModel.js'
   
   export const fetchGames = async (req, res) => {
@@ -30,4 +31,14 @@ import {
       res.status(500).json({ error: error.message })
     }
   }
-  
+  // --- Nuevo endpoint: traer un juego con hasta 2 comentarios ---
+export const fetchGameById = async (req, res) => {
+  try {
+    const gameId = req.params.id
+    const game = await getGameByIdWithComments(gameId) // este método devuelve el juego + 2 comentarios
+    if (!game) return res.status(404).json({ error: 'Juego no encontrado' })
+    res.json(game)
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+}
