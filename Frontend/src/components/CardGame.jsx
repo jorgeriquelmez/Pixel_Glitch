@@ -1,10 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { AppContext } from '../context/AppContext'; // Importa el contexto
+import { useNavigate } from "react-router-dom";
 import './CardGame.css';
 
 const CardGame = ({ game }) => {
   const { addToCart } = useContext(AppContext); // Usa el contexto para obtener la función
   const [selectedPlatform, setSelectedPlatform] = useState(game.platforms.split(', ')[0] || '');
+  const navigate = useNavigate();
 
   const handlePlatformChange = (event) => {
     setSelectedPlatform(event.target.value);
@@ -12,6 +14,11 @@ const CardGame = ({ game }) => {
 
   const handleAddToCart = () => {
     addToCart(game, selectedPlatform);
+  }; 
+
+    // --- NUEVO: Botón para ir a la página de reseñas ---
+  const handleVerResenas = () => {
+    navigate(`/review/${game.id}`);
   };
 
   return (
@@ -43,6 +50,10 @@ const CardGame = ({ game }) => {
           <button className="add-to-cart-button" onClick={handleAddToCart}>
             Añadir al Carro
           </button>
+           {/* --- NUEVO BOTÓN: Ver reseñas --- */}
+        <button className="view-reviews-button" onClick={handleVerResenas}>
+          Ver Reseñas
+        </button>
         </div>      
     </div>
   );

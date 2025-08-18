@@ -8,7 +8,7 @@ import miLogo from "../assets/logo2.png";
 
 export default function CheckoutPage() {
     const navigate = useNavigate();
-    const { cart, subtotal, total} = useContext(AppContext); 
+    const { cart, subtotal, total, clearCart } = useContext(AppContext); 
 
     const [shipping, setShipping] = useState({
         nombre: '',
@@ -33,6 +33,7 @@ export default function CheckoutPage() {
         setPayment({ ...payment, [e.target.name]: e.target.value });
 
     const handleBuyClick = () => {
+
         if (isFormValid) {
             Swal.fire({
                 title: "¡Felicidades!",
@@ -48,6 +49,7 @@ export default function CheckoutPage() {
                     confirmButton: 'mi-boton-confirmar'
                 }
             }).then(() => {
+                clearCart(); 
                 navigate('/');
             });
         }
@@ -173,4 +175,4 @@ export default function CheckoutPage() {
             </button>
         </div>
     );
-}
+}a

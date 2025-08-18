@@ -8,11 +8,11 @@ export const getAllGames = async () => {
 
 export const createGame = async (game) => {
   const { nombre, plataforma, precio, imagen } = game
-
-  const { data, error } = await supabase.from('games').insert([
-    { nombre, plataforma, precio, imagen }
-  ]).select().single()
-
+  const { data, error } = await supabase
+    .from('games')
+    .insert([{ nombre, plataforma, precio, imagen }])
+    .select()
+    .single()
   if (error) throw error
   return data
 }
@@ -22,8 +22,8 @@ export const deleteGame = async (id) => {
   if (error) throw error
 }
 
-// --- Nuevo método para traer un juego con hasta 2 comentarios ---
-export const getGameByIdWithComments = async (id) => {
+// --- Nuevo método para traer un juego con comentarios (limit configurable) ---
+export const getGameByIdWithComments = async (id, limit = 2) => {
   // Traer el juego
   const { data: gameData, error: gameError } = await supabase
     .from('games')
@@ -33,17 +33,17 @@ export const getGameByIdWithComments = async (id) => {
   if (gameError) throw gameError
   if (!gameData) return null
 
-  // Traer hasta 2 comentarios para ese juego
+  // Traer comentarios para ese juego con límite dinámico
   const { data: comentariosData, error: commentsError } = await supabase
     .from('comentarios')
     .select('*')
     .eq('game_id', id)
     .order('id', { ascending: true })
-    .limit(2)
+    .limit(limit)
   if (commentsError) throw commentsError
 
   return {
-    game: gameData,
+    ...gameData,
     comentarios: comentariosData
   }
 }
