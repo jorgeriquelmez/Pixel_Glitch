@@ -1,115 +1,97 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom'; 
+import { Container, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import portadaImage from '../assets/portada.jpeg';
-import data from '../data/data.json';
 import games from '../data/games.json';
 import './ExplorerPage.css';
+import CardGame from './CardGame';
 
 const ExplorerPage = () => {
-const [images, setImages] = useState([]);
+ const [latestGames, setLatestGames] = useState([]);
+ const [topSellingGames, setTopSellingGames] = useState([]);
 
-useEffect(() => {
-setImages(data.images);
-}, []);
+ useEffect(() => {
+   const sortedGames = [...games].sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+   setLatestGames(sortedGames.slice(0, 4));
 
-const sortedGames = games.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
-const latestGames = sortedGames.slice(0, 4); 
-const sortedByPopularity = [...games].sort((a, b) => b.popularity - a.popularity);
-const topSellingGames = sortedByPopularity.slice(0, 4); 
+   const sortedByPopularity = [...games].sort((a, b) => b.popularity - a.popularity);
+   setTopSellingGames(sortedByPopularity.slice(0, 4));
+ }, []);
 
-return (
- <div className="explorer-container">
-      <Container className="portada-section">
-        <div className="portada-wrapper">
-          <img src={portadaImage} alt="Descripción de la imagen" className="portada-image" />
-          {/* <div className="portada-text">
-            <span>¡Bienvenido a los videojuegos!</span>
-          </div> */}
-        </div>
-      </Container>
+ return (
+   <div className="explorer-container">
+     <Container className="portada-section">
+       <div className="portada-wrapper">
+         <img src={portadaImage} alt="Descripción de la imagen" className="portada-image" />
+       </div>
+     </Container>
 
-      <Container className="lanzamientos-section">
-        <h1 className="text-center my-4">Nuevos lanzamientos</h1>
-        <Row xs={1} md={2} lg={4} className="g-4 justify-content-center"> 
-            {latestGames.map((game) => (
-                <Col key={game.id}>
-                    <Card className="h-100">
-                        <Card.Img variant="top" src={game.image} />
-                        <Card.Body>
-                            <Card.Title>{game.title}</Card.Title>
-                        </Card.Body>
-                     </Card>
-                </Col>
-             ))}
-        </Row>
-      </Container>
-            <Container className="top-section">
-        <h1 className="text-center my-4">Top Ventas</h1>
-        <Row xs={1} md={2} lg={4} className="g-4 justify-content-center"> 
-            {topSellingGames.map((game) => (
-                <Col key={game.id}>
-                    <Card className="h-100 card-game">
-                                <div className="image-container"> 
-                                    <Card.Img variant="top" src={game.image} />
-                                </div>
-                        <Card.Body>
-                            <Card.Title>{game.title}</Card.Title>
-                        </Card.Body>
-                     </Card>
-                </Col>
-             ))}
-        </Row>
-      </Container>
+     <Container className="lanzamientos-section">
+       <h1 className="text-center my-4">Nuevos lanzamientos</h1>
+       <Row xs={1} md={2} lg={4} className="g-4 justify-content-center">
+         {latestGames.map((game) => (
+           <Col key={game.id}>
+             <CardGame game={game} /> 
+           </Col>
+         ))}
+       </Row>
+     </Container>
 
-      <Container className="categories-section">
-        <h2 className="text-center my-5">Categorías</h2>
-        <Row className="mb-4">
+     <Container className="top-section">
+       <h1 className="text-center my-4">Top Ventas</h1>
+       <Row xs={1} md={2} lg={4} className="g-4 justify-content-center">
+         {topSellingGames.map((game) => (
+           <Col key={game.id}>
+             <CardGame game={game} /> 
+           </Col>
+         ))}
+       </Row>
+     </Container>
 
-          <Col md={4}>
-            <Link to="/genre/acción" className="category-card">
-              <img src="https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/accion.jpg" alt="Accion" className="category-image" />
-              <div className="category-overlay"><span>Accion</span></div>
-            </Link>
-          </Col>
-          <Col md={4}>
-            <Link to="/genre/aventura" className="category-card">
-              <img src="https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/aventura.jpg" alt="Aventura" className="category-image" />
-              <div className="category-overlay"><span>Aventura</span></div>
-            </Link>
-          </Col>
-          <Col md={4}>
-            <Link to="/genre/rpg" className="category-card">
-              <img src="https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/rpg.jpg" alt="RPG" className="category-image" />
-              <div className="category-overlay"><span>RPG</span></div>
-            </Link>
-          </Col>
-        </Row>
-        <Row>
-
-          <Col md={4}>
-            <Link to="/genre/estrategia" className="category-card">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShBa45DthoN9U4n4P7_tLAXSnOeV7ZMVLiLg&s" alt="Estrategia" className="category-image" />
-              <div className="category-overlay"><span>Estrategia</span></div>
-            </Link>
-          </Col>
-          <Col md={4}>
-            <Link to="/genre/simulador" className="category-card">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfCmPOz3-7c46RndPrVvDBzzLzACwioj3Aqg&s" alt="Simulacion" className="category-image" />
-              <div className="category-overlay"><span>Simulacion</span></div>
-            </Link>
-          </Col>
-          <Col md={4}>
-            <Link to="/genre/deportes" className="category-card">
-              <img src="https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/deportes.jpg" alt="Deportes" className="category-image" />
-              <div className="category-overlay"><span>Deportes</span></div>
-            </Link>
-          </Col>
-        </Row>
-      </Container>
-
-
-</div>
+     <Container className="categories-section">
+       <h2 className="text-center my-5">Categorías</h2>
+       <Row className="mb-4">
+         <Col md={4}>
+           <Link to="/genre/acción" className="category-card">
+             <img src="https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/accion.jpg" alt="Accion" className="category-image" />
+             <div className="category-overlay"><span>Accion</span></div>
+           </Link>
+         </Col>
+         <Col md={4}>
+           <Link to="/genre/aventura" className="category-card">
+             <img src="https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/aventura.jpg" alt="Aventura" className="category-image" />
+             <div className="category-overlay"><span>Aventura</span></div>
+           </Link>
+         </Col>
+         <Col md={4}>
+           <Link to="/genre/rpg" className="category-card">
+             <img src="https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/rpg.jpg" alt="RPG" className="category-image" />
+             <div className="category-overlay"><span>RPG</span></div>
+           </Link>
+         </Col>
+       </Row>
+       <Row>
+         <Col md={4}>
+           <Link to="/genre/estrategia" className="category-card">
+             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShBa45DthoN9U4n4P7_tLAXSnOeV7ZMVLiLg&s" alt="Estrategia" className="category-image" />
+             <div className="category-overlay"><span>Estrategia</span></div>
+           </Link>
+         </Col>
+         <Col md={4}>
+           <Link to="/genre/simulador" className="category-card">
+             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfCmPOz3-7c46RndPrVvDBzzLzACwioj3Aqg&s" alt="Simulacion" className="category-image" />
+             <div className="category-overlay"><span>Simulacion</span></div>
+           </Link>
+         </Col>
+         <Col md={4}>
+           <Link to="/genre/deportes" className="category-card">
+             <img src="https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/deportes.jpg" alt="Deportes" className="category-image" />
+             <div className="category-overlay"><span>Deportes</span></div>
+           </Link>
+         </Col>
+       </Row>
+     </Container>
+   </div>
  );
 };
 

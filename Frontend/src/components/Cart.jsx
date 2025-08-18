@@ -1,28 +1,19 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import TablaCarrito from "./Cart/Tabla";
+import TablaCarrito from "../components/Cart/TablaCarrito"; 
 import Swal from "sweetalert2";
 import "./Cart.css";
 import miLogo from "../assets/logo2.png";
-import productosIniciales from "../data/cart.json";
-import axios from "axios";
-import { AppContext } from '../context/AppContext';
+import { AppContext } from '../context/AppContext'; 
 
 const Cart = () => {
     const navigate = useNavigate();
-    const { cart, setCart, subtotal, total } = useContext(AppContext);
+    const { cart, subtotal, total, setCart } = useContext(AppContext);
 
-    useEffect(() => {
-        const cargarProductos = async () => {
-            try {
-                setCart(productosIniciales);
-            } catch (error) {
-                console.error("Error cargando productos:", error);
-            }
-        };
-
-        cargarProductos();
-    }, [setCart]);
+    // Limpia los productos iniciales que estaban cargando
+    // useEffect(() => {
+    //     setCart([]);
+    // }, [setCart]);
 
     const manejarIrAPagar = () => {
         if (cart.length === 0) {
@@ -49,7 +40,7 @@ const Cart = () => {
         <main className="carro-compras">
             <h1>Carro de compras</h1>
 
-            <TablaCarrito productos={cart} />
+            <TablaCarrito />
 
             <section className="resumen-compra">
                 <h2>Resumen de compra</h2>

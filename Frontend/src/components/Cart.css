@@ -41,13 +41,13 @@
 /* =========================
    RESUMEN DE COMPRA
 ========================= */
-.resumen-compra {
+/* .resumen-compra {
   max-width: 300px;
-}
+} */
 
 .resumen-compra h2 {
   font-weight: bold;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .resumen-item {

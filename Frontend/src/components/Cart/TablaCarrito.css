@@ -1,0 +1,88 @@
+.tabla-carrito-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+.tabla-carrito-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Aplica Flexbox a las filas para que todas las celdas se alineen */
+.tabla-carrito-container tr {
+  display: flex;
+  align-items: center; /* Alineación vertical central */
+  justify-content: space-between; /* Distribuye el espacio entre los elementos */
+  border-bottom: 1px solid #ddd;
+  padding: 12px 0; /* Agrega padding para espaciar las filas */
+}
+
+/* Estilos de las celdas */
+.tabla-carrito-container th,
+.tabla-carrito-container td {
+  flex: 1; /* Permite que cada celda ocupe un espacio equitativo */
+  text-align: center; /* Centra el texto en todas las celdas */
+  padding: 0 10px;
+}
+
+/* Permite que la primera celda (Producto) sea más grande */
+.tabla-carrito-container th:first-child,
+.tabla-carrito-container td:first-child {
+  flex: 2;
+  text-align: left; /* Alinea el texto a la izquierda para el nombre del producto */
+}
+
+/* Evita que los encabezados tengan borde inferior */
+.tabla-carrito-container thead tr {
+  border-bottom: none;
+}
+
+/* Alinea los encabezados de la tabla con el contenido de las celdas */
+.tabla-carrito-container thead th {
+  text-align: center;
+}
+
+.producto-info {
+  display: flex;
+  align-items: center;
+}
+
+.producto-imagen {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 15px;
+}
+
+.cantidad-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.cantidad-controls button {
+  background-color: #a1a1a1;
+  border: 1px solid #a1a1a1;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cantidad-controls button:hover {
+  background-color: #dee2e6;
+}
+
+.empty-cart-message {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.2em;
+  color: #888;
+}
