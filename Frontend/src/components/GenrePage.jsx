@@ -1,13 +1,17 @@
+// src/components/GenrePage.jsx
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import games from '../data/games.json'; 
-import './ExplorerPage.css'; 
+import CardGame from './CardGame'; // 👈 Importamos el nuevo componente
+import './GamesDisplay.css'; // Usamos un CSS común para las tarjetas
 
 const GenrePage = () => {
-
     const { category } = useParams();
-    const filteredGames = games.filter(game => game.genre.toLowerCase() === category.toLowerCase());
+    
+    const filteredGames = games.filter(game => 
+        game.genre.toLowerCase() === category.toLowerCase()
+    );
 
     return (
         <div className="genre-page-container">
@@ -21,14 +25,7 @@ const GenrePage = () => {
                     <Row xs={1} md={2} lg={4} className="g-4 justify-content-center">
                         {filteredGames.map((game) => (
                             <Col key={game.id}>
-                                <Card className="h-100 card-game">
-                                    <div className="image-container">
-                                        <Card.Img variant="top" src={game.image} />
-                                    </div>
-                                    <Card.Body>
-                                        <Card.Title>{game.title}</Card.Title>
-                                    </Card.Body>
-                                </Card>
+                                <CardGame game={game} /> {/* 👈 Usamos el componente CardGame */}
                             </Col>
                         ))}
                     </Row>
