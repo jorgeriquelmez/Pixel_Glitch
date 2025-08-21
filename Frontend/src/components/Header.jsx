@@ -44,9 +44,11 @@ const Header = () => {
                                 <Nav.Link onClick={handleLogout}>Cerrar sesión</Nav.Link>
                             )}
                             {user?.email === 'admin@pixelglitch.com' && (
-                                <Nav.Link as={Link} to="/admin" style={{ fontWeight: 'bold', color: 'darkgrey' }}>Administrador</Nav.Link>
-                            )}
-                        </div>
+                                <Nav.Link as={Link} to="/admin" style={{ fontWeight: 'bold', color: 'darkgrey' }}>
+                                  Administrador
+                                </Nav.Link>
+                              )}
+                            </div>
                         <Link to="/cart" className="shopping-cart-container ms-3">
                             <FontAwesomeIcon icon={faShoppingCart} size="lg" />
                         </Link>
