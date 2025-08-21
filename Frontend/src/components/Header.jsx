@@ -43,7 +43,7 @@ const Header = () => {
                             {user && (
                                 <Nav.Link onClick={handleLogout}>Cerrar sesión</Nav.Link>
                             )}
-                            {user === 'admin' && (
+                            {user?.email === 'admin@pixelglitch.com' && (
                                 <Nav.Link as={Link} to="/admin" style={{ fontWeight: 'bold', color: 'darkgrey' }}>Administrador</Nav.Link>
                             )}
                         </div>

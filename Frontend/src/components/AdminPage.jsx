@@ -78,7 +78,7 @@ export default function AdminPage() {
           </tr>
         </thead>
         <tbody>
-          {games.map((j, i) => (
+          {games && games.map((j, i) => (
             <GameRow
               key={i}
               idx={i}
