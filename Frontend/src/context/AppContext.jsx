@@ -9,6 +9,31 @@ export const AppProvider = ({ children }) => {
   const [subtotal, setSubtotal] = useState(0);
   const [total, setTotal] = useState(0);
 
+  // 🔹 Cargar juegos desde la API al iniciar
+ useEffect(() => {
+  const fetchGames = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/api/games");
+      const data = await res.json();
+
+      // Normalizar nombres y precios según lo que devuelve tu backend
+      const normalized = data.map(g => ({
+          id: g.id,
+          nombre: g.title,
+          plataforma: g.platforms,
+          precio: g.price,
+          imagen: g.image || ""
+        }));
+
+      setGames(normalized);
+    } catch (err) {
+      console.error("Error cargando juegos:", err);
+    }
+  };
+  fetchGames();
+}, []);
+
+  // Calcular subtotal y total
   useEffect(() => {
     const newSubtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     setSubtotal(newSubtotal);
@@ -49,7 +74,7 @@ export const AppProvider = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
-        games, setGames,   // 👈 ahora disponibles
+        games, setGames,
         cart, setCart,
         addToCart,
         increaseQuantity,

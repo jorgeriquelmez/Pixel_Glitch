@@ -8,6 +8,7 @@ import {
 export const fetchGames = async (req, res) => {
   try {
     const games = await getAllGames()
+    console.log("Games from Supabase:", games)   // 👈 agrega esto
     res.json(games)
   } catch (error) {
     res.status(500).json({ error: error.message })
