@@ -1,30 +1,65 @@
-import React, { useContext, useState } from 'react'
-import { AppContext } from '../context/AppContext'
-import GameRow from './GameRow'
-import './AdminPage.css'
+import React, { useContext, useState } from 'react';
+import { AppContext } from '../context/AppContext';
+import GameRow from './GameRow';
+import './AdminPage.css';
 
 export default function AdminPage() {
-  const { games, setGames, cart, setCart } = useContext(AppContext)
+  const { games, setGames } = useContext(AppContext);
   const [formData, setFormData] = useState({
     nombre: '',
     plataforma: '',
     precio: '',
-    imagen: ''
-  })
+    imagen: '',
+  });
 
-  const handleChange = e =>
-    setFormData({ ...formData, [e.target.name]: e.target.value })
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleAdd = () => {
-    if (!formData.nombre) return
-    const newGame = { ...formData }
-    setGames([...games, newGame])
-    setCart([...cart, { ...newGame, qty: 1 }])
-    setFormData({ nombre: '', plataforma: '', precio: '', imagen: '' })
-  }
+  // 🔹 Agregar nuevo juego
+  const handleAdd = async () => {
+    if (!formData.nombre) return;
 
-  const handleDelete = idx =>
-    setGames(games.filter((_, i) => i !== idx))
+    try {
+      const res = await fetch('http://localhost:3000/api/games', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) throw new Error('Error al crear juego');
+
+      const newGame = await res.json();
+
+      // Normalizar propiedades para frontend
+      const normalized = {
+        id: newGame.id,
+        nombre: newGame.nombre || newGame.nombreJuego,
+        plataforma: newGame.plataforma,
+        precio: newGame.precio || newGame.precioJuego,
+        imagen: newGame.imagen
+      };
+
+      setGames([...games, normalized]);
+      setFormData({ nombre: '', plataforma: '', precio: '', imagen: '' });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // 🔹 Eliminar juego
+  const handleDelete = async (id) => {
+    try {
+      const res = await fetch(`http://localhost:3000/api/games/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (!res.ok) throw new Error('Error al eliminar juego');
+
+      setGames(games.filter((g) => g.id !== id));
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="admin-container">
@@ -78,16 +113,17 @@ export default function AdminPage() {
           </tr>
         </thead>
         <tbody>
-          {games && games.map((j, i) => (
-            <GameRow
-              key={i}
-              idx={i}
-              juego={j}
-              onDelete={() => handleDelete(i)}
-            />
-          ))}
+          {games &&
+            games.map((j, i) => (
+              <GameRow
+                key={j.id || i}
+                idx={i}
+                juego={j}
+                onDelete={() => handleDelete(j.id)}
+              />
+            ))}
         </tbody>
       </table>
     </div>
-  )
+  );
 }
