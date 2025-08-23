@@ -1,66 +1,66 @@
 import {
-  getAllGames,
   createGame,
+  updateGame,
   deleteGame,
-  getGameByIdWithComments
-} from '../models/gameModel.js'
+  getGames,
+  getGameById
+} from '../models/gameModel.js';
 
 export const fetchGames = async (req, res) => {
   try {
-    const games = await getAllGames()
-    console.log("Games from Supabase:", games)   // 👈 agrega esto
-    res.json(games)
-  } catch (error) {
-    res.status(500).json({ error: error.message })
+    const games = await getGames();
+    res.json(games);
+  } catch (err) {
+    res.status(500).json({ error: 'Error al obtener juegos' });
   }
-}
+};
 
 export const addGame = async (req, res) => {
   try {
-    const newGame = await createGame(req.body)
-    res.status(201).json(newGame)
-  } catch (error) {
-    res.status(500).json({ error: error.message })
+    console.log('POST request to /api/games received');
+    console.log('Request body:', req.body);
+    console.log('Request headers:', req.headers);
+    
+    if (!req.body || Object.keys(req.body).length === 0) {
+      console.log('Empty request body received');
+      return res.status(400).json({ error: 'Request body is required' });
+    }
+
+    
+    const newGame = await createGame(req.body);
+
+    
+    if (!newGame?.id) {
+      return res.status(500).json({ error: 'No se pudo obtener ID del nuevo juego' });
+    }
+
+    
+    const completeGame = await getGameById(newGame.id);
+
+    res.status(201).json(completeGame);
+  } catch (err) {
+    console.error('Error al crear juego:', err);
+    res.status(500).json({ error: 'Error al crear juego' });
   }
-}
+};
+
+export const editGame = async (req, res) => {
+  try {
+    const updated = await updateGame(req.params.id, req.body);
+    res.json(updated);
+  } catch (err) {
+    console.error('Error al editar juego:', err);
+    res.status(500).json({ error: 'Error al editar juego' });
+  }
+};
 
 export const removeGame = async (req, res) => {
   try {
-    await deleteGame(req.params.id)
-    res.status(204).send()
-  } catch (error) {
-    res.status(500).json({ error: error.message })
+    await deleteGame(req.params.id);
+    res.status(204).end();
+  } catch (err) {
+    console.error('Error al eliminar juego:', err);
+    res.status(500).json({ error: 'Error al eliminar juego' });
   }
-}
-// Traer un juego por ID con comentarios (limit configurable)
-export const fetchGameById = async (req, res) => {
-  try {
-    const gameId = req.params.id
-    const limit = parseInt(req.query.limit) || 2
-    const game = await getGameByIdWithComments(gameId, limit)
-    if (!game) return res.status(404).json({ error: 'Juego no encontrado' })
+};
 
-    // --- Cálculos propios para el frontend ---
-    const distribucionEstrellas = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 }
-    let totalReviews = 0
-    let sumaPuntaje = 0
-
-    game.comentarios.forEach((c) => {
-      const p = c.puntaje
-      distribucionEstrellas[p] = (distribucionEstrellas[p] || 0) + 1
-      totalReviews++
-      sumaPuntaje += p
-    })
-
-    const ratingPromedio = totalReviews ? sumaPuntaje / totalReviews : 0
-
-    res.json({
-      ...game,
-      ratingPromedio,
-      totalReviews,
-      distribucionEstrellas
-    })
-  } catch (error) {
-    res.status(500).json({ error: error.message })
-  }
-}

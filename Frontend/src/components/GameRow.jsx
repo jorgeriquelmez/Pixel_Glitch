@@ -15,7 +15,6 @@ export default function GameRow({ idx, juego, onDelete }) {
       <td>{juego.plataforma}</td>
       <td>${juego.precio}</td>
       <td>
-        <button className="btn-edit">Editar</button>
         <button className="btn-delete" onClick={onDelete}>
           Eliminar
         </button>

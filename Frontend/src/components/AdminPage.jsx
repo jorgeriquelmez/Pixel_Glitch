@@ -1,23 +1,57 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { AppContext } from '../context/AppContext';
 import GameRow from './GameRow';
 import './AdminPage.css';
 
 export default function AdminPage() {
   const { games, setGames } = useContext(AppContext);
+
   const [formData, setFormData] = useState({
-    nombre: '',
-    plataforma: '',
-    precio: '',
-    imagen: '',
+    title: '',
+    platforms: '',
+    price: '',
+    image: '',
+    genre: '',
+    release_date: '',
+    popularity: ''
   });
+
+  // 
+  useEffect(() => {
+    const fetchGames = async () => {
+      try {
+        const res = await fetch('http://localhost:3000/api/games');
+        if (!res.ok) throw new Error('Error al obtener juegos');
+        const data = await res.json();
+
+        
+        const normalized = data.map(g => ({
+          id: g.id,
+          title: g.title,
+          platforms: g.platforms,
+          price: g.price,
+          image: g.image,
+          genre: g.genre,
+          release_date: g.release_date,
+          popularity: g.popularity
+        }));
+
+        setGames(normalized);
+      } catch (error) {
+        console.error("Error cargando juegos en AdminPage:", error);
+      }
+    };
+
+    if (games.length === 0) {
+      fetchGames(); // solo si aún no hay
+    }
+  }, [games, setGames]);
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  // 🔹 Agregar nuevo juego
   const handleAdd = async () => {
-    if (!formData.nombre) return;
+    if (!formData.title) return;
 
     try {
       const res = await fetch('http://localhost:3000/api/games', {
@@ -30,23 +64,22 @@ export default function AdminPage() {
 
       const newGame = await res.json();
 
-      // Normalizar propiedades para frontend
-      const normalized = {
-        id: newGame.id,
-        nombre: newGame.nombre || newGame.nombreJuego,
-        plataforma: newGame.plataforma,
-        precio: newGame.precio || newGame.precioJuego,
-        imagen: newGame.imagen
-      };
+      setGames([...games, newGame]);
 
-      setGames([...games, normalized]);
-      setFormData({ nombre: '', plataforma: '', precio: '', imagen: '' });
+      setFormData({
+        title: '',
+        platforms: '',
+        price: '',
+        image: '',
+        genre: '',
+        release_date: '',
+        popularity: ''
+      });
     } catch (error) {
       console.error(error);
     }
   };
 
-  // 🔹 Eliminar juego
   const handleDelete = async (id) => {
     try {
       const res = await fetch(`http://localhost:3000/api/games/${id}`, {
@@ -65,36 +98,63 @@ export default function AdminPage() {
     <div className="admin-container">
       <h2>Agregar nuevo juego</h2>
 
-      <label>Nombre</label>
+      <label>Título</label>
       <input
-        name="nombre"
-        value={formData.nombre}
+        name="title"
+        value={formData.title}
         onChange={handleChange}
         placeholder="Nombre del juego"
       />
 
-      <label>Plataforma</label>
+      <label>Plataformas</label>
       <input
-        name="plataforma"
-        value={formData.plataforma}
+        name="platforms"
+        value={formData.platforms}
         onChange={handleChange}
-        placeholder="PC / Xbox / PlayStation"
+        placeholder="PC / Xbox / PS5"
       />
 
       <label>Precio</label>
       <input
-        name="precio"
-        value={formData.precio}
+        name="price"
+        value={formData.price}
         onChange={handleChange}
-        placeholder="Ingresa precio"
+        placeholder="Precio"
+        type="number"
       />
 
       <label>Imagen</label>
       <input
-        name="imagen"
-        value={formData.imagen}
+        name="image"
+        value={formData.image}
         onChange={handleChange}
-        placeholder="URL de portada"
+        placeholder="URL imagen"
+      />
+
+      <label>Género</label>
+      <input
+        name="genre"
+        value={formData.genre}
+        onChange={handleChange}
+        placeholder="Ej: Acción"
+      />
+
+      <label>Fecha de lanzamiento</label>
+      <input
+        name="release_date"
+        value={formData.release_date}
+        onChange={handleChange}
+        type="date"
+      />
+
+      <label>Popularidad</label>
+      <input
+        name="popularity"
+        value={formData.popularity}
+        onChange={handleChange}
+        type="number"
+        step="0.1"
+        placeholder="0.0 a 10.0"
       />
 
       <button className="btn-add" onClick={handleAdd}>
@@ -127,3 +187,10 @@ export default function AdminPage() {
     </div>
   );
 }
+
+
+
+
+
+
+

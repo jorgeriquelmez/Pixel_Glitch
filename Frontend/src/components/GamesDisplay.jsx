@@ -17,23 +17,33 @@ const GamesDisplay = () => {
   const [priceRangeFilter, setPriceRangeFilter] = useState('');
   const [sortBy, setSortBy] = useState('Precio');
 
-  useEffect(() => {
-    const fetchGames = async () => {
-      try {
-        const response = await fetch('http://localhost:3000/api/games');
-        if (!response.ok) {
-          throw new Error('Error al obtener los juegos');
-        }
-        const gamesData = await response.json();
-        setAllGames(gamesData);
-      } catch (error) {
-        console.error("Error al obtener los juegos:", error);
-        setError(error.message);
-      } finally {
-        setIsLoading(false);
+  const fetchGames = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/api/games');
+      if (!response.ok) {
+        throw new Error('Error al obtener los juegos');
       }
-    };
+      const gamesData = await response.json();
+      setAllGames(gamesData);
+    } catch (error) {
+      console.error("Error al obtener los juegos:", error);
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
     fetchGames();
+
+    
+    const handleGameAdded = () => fetchGames();
+    window.addEventListener('gameAdded', handleGameAdded);
+
+    
+    return () => {
+      window.removeEventListener('gameAdded', handleGameAdded);
+    };
   }, []);
 
   const platforms = useMemo(() => {

@@ -1,49 +1,77 @@
-import { supabase } from '../../config/supabase.js'
+import { supabase } from '../../config/supabase.js';
 
-export const getAllGames = async () => {
-  const { data, error } = await supabase.from('games').select('*').order('id', { ascending: true })
-  if (error) throw error
-  return data
-}
-
-export const createGame = async (game) => {
-  const { nombre, plataforma, precio, imagen } = game
+// Obtener todos los juegos
+export const getGames = async () => {
   const { data, error } = await supabase
     .from('games')
-    .insert([{ nombre, plataforma, precio, imagen }])
-    .select()
-    .single()
-  if (error) throw error
-  return data
-}
+    .select('*');
 
-export const deleteGame = async (id) => {
-  const { error } = await supabase.from('games').delete().eq('id', id)
-  if (error) throw error
-}
+  if (error) throw error;
+  return data;
+};
 
-// --- Nuevo método para traer un juego con comentarios (limit configurable) ---
-export const getGameByIdWithComments = async (id, limit = 2) => {
-  // Traer el juego
-  const { data: gameData, error: gameError } = await supabase
+// Obtener un juego por ID
+export const getGameById = async (id) => {
+  const { data, error } = await supabase
     .from('games')
     .select('*')
     .eq('id', id)
-    .single()
-  if (gameError) throw gameError
-  if (!gameData) return null
+    .single();
 
-  // Traer comentarios para ese juego con límite dinámico
-  const { data: comentariosData, error: commentsError } = await supabase
-    .from('comentarios')
-    .select('*')
-    .eq('game_id', id)
-    .order('id', { ascending: true })
-    .limit(limit)
-  if (commentsError) throw commentsError
+  if (error) throw error;
+  return data;
+};
 
-  return {
-    ...gameData,
-    comentarios: comentariosData
+// Crear un nuevo juego (acceso seguro)
+export const createGame = async (data) => {
+  const { id, ...gameData } = data;
+
+  // Validación opcional para prevenir errores silenciosos
+  if (
+    !gameData.title ||
+    isNaN(parseFloat(gameData.price)) ||
+    isNaN(parseFloat(gameData.popularity))
+  ) {
+    throw new Error('Datos del juego inválidos');
   }
-}
+
+  const { data: inserted, error } = await supabase
+    .from('games')
+    .insert([gameData])
+    .select(); // no usamos single para prevenir errores
+
+  if (error) throw error;
+
+  // Asegurar que al menos un juego fue insertado
+  if (!inserted || inserted.length === 0) {
+    throw new Error('Error al insertar el juego');
+  }
+
+  return inserted[0]; // devolvemos el primero
+};
+
+// Actualizar un juego existente
+export const updateGame = async (id, data) => {
+  const { title, platforms, price, image, genre, release_date, popularity } = data;
+
+  const { data: updatedGame, error } = await supabase
+    .from('games')
+    .update({ title, platforms, price, image, genre, release_date, popularity })
+    .eq('id', id)
+    .select()
+    .single();
+
+  if (error) throw error;
+  return updatedGame;
+};
+
+// Eliminar un juego
+export const deleteGame = async (id) => {
+  const { error } = await supabase
+    .from('games')
+    .delete()
+    .eq('id', id);
+
+  if (error) throw error;
+};
+
