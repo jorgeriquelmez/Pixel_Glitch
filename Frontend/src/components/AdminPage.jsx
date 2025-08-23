@@ -20,7 +20,7 @@ export default function AdminPage() {
     if (!formData.nombre) return;
 
     try {
-      const res = await fetch('http://localhost:3000/api/games', {
+      const res = await fetch('https://pixel-glitch.onrender.com/api/games', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

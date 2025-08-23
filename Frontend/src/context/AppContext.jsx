@@ -13,7 +13,7 @@ export const AppProvider = ({ children }) => {
  useEffect(() => {
   const fetchGames = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/games");
+      const res = await fetch("https://pixel-glitch.onrender.com/api/games");
       const data = await res.json();
 
       // Normalizar nombres y precios según lo que devuelve tu backend
