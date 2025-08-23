@@ -9,8 +9,8 @@ dotenv.config()
 
 const app = express()
 
-app.use(cors({ origin: 'http://localhost:5173' }))
-// app.use(cors({ origin: 'https://pixel-glitch-zzos.vercel.app' }))
+// app.use(cors({ origin: 'http://localhost:5173' }))
+app.use(cors({ origin: 'https://pixel-glitch-zzos.vercel.app' }))
 app.use(express.json())
 
 // Rutas
