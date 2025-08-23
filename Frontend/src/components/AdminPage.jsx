@@ -18,7 +18,6 @@ export default function AdminPage() {
   const [editing, setEditing] = useState(false);
   const [editingId, setEditingId] = useState(null);
 
-  // Lógica para obtener los juegos al cargar la página
   useEffect(() => {
     const fetchGames = async () => {
       try {
@@ -30,7 +29,6 @@ export default function AdminPage() {
         console.error("Error cargando juegos en AdminPage:", error);
       }
     };
-
     if (games.length === 0) {
       fetchGames();
     }
