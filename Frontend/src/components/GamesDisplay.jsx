@@ -84,7 +84,7 @@ const GamesDisplay = () => {
         return a.price - b.price;
       }
       if (sortBy === 'Fecha de Lanzamiento') {
-        return new Date(b.releaseDate) - new Date(a.releaseDate);
+        return new Date(b.release_date) - new Date(a.release_date);
       }
       if (sortBy === 'Popularidad') {
         return b.popularity - a.popularity;

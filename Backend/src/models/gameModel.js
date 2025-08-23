@@ -8,6 +8,7 @@ export const getAllGames = async () => {
   if (error) throw error
   return data
 }
+
 export const createGame = async (game) => {
   const { title, platforms, price, image, genre, release_date, popularity } =
     game
@@ -46,6 +47,7 @@ export const getGameByIdWithComments = async (id) => {
     .select('*')
     .eq('id', id)
     .single()
+
   if (gameError) throw gameError
   if (!gameData) return null
 

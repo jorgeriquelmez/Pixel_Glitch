@@ -1,8 +1,8 @@
 import {
   getAllGames,
   createGame,
-  deleteGame,
   updateGame as updateGameModel,
+  deleteGame,
   getGameByIdWithComments
 } from '../models/gameModel.js'
 

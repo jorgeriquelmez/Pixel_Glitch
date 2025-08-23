@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { AppContext } from '../context/AppContext';
 import GameRow from './GameRow';
 import './AdminPage.css';
@@ -17,6 +17,24 @@ export default function AdminPage() {
 
   const [editing, setEditing] = useState(false);
   const [editingId, setEditingId] = useState(null);
+
+  // Lógica para obtener los juegos al cargar la página (mantenemos la de tu compañero por defecto)
+  useEffect(() => {
+    const fetchGames = async () => {
+      try {
+        const res = await fetch('https://pixel-glitch.onrender.com/api/games');
+        if (!res.ok) throw new Error('Error al obtener juegos');
+        const data = await res.json();
+        setGames(data);
+      } catch (error) {
+        console.error("Error cargando juegos en AdminPage:", error);
+      }
+    };
+
+    if (games.length === 0) {
+      fetchGames();
+    }
+  }, [games, setGames]);
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -135,12 +153,12 @@ export default function AdminPage() {
         placeholder="Título del juego"
       />
 
-      <label>Plataforma</label>
+      <label>Plataformas</label>
       <input
         name="platforms"
         value={formData.platforms}
         onChange={handleChange}
-        placeholder="PC / Xbox / PlayStation"
+        placeholder="PC / Xbox / PS5"
       />
 
       <label>Precio</label>
@@ -148,7 +166,8 @@ export default function AdminPage() {
         name="price"
         value={formData.price}
         onChange={handleChange}
-        placeholder="Ingresa precio"
+        placeholder="Precio"
+        type="number"
       />
 
       <label>Imagen</label>
@@ -156,7 +175,7 @@ export default function AdminPage() {
         name="image"
         value={formData.image}
         onChange={handleChange}
-        placeholder="URL de portada"
+        placeholder="URL imagen"
       />
 
       <label>Género</label>
@@ -164,7 +183,7 @@ export default function AdminPage() {
         name="genre"
         value={formData.genre}
         onChange={handleChange}
-        placeholder="Género del juego"
+        placeholder="Ej: Acción"
       />
 
       <label>Fecha de lanzamiento</label>
@@ -172,7 +191,7 @@ export default function AdminPage() {
         name="release_date"
         value={formData.release_date}
         onChange={handleChange}
-        placeholder="Fecha de lanzamiento (ej. YYYY-MM-DD)"
+        type="date"
       />
 
       <label>Popularidad</label>
@@ -180,9 +199,10 @@ export default function AdminPage() {
         name="popularity"
         value={formData.popularity}
         onChange={handleChange}
-        placeholder="Popularidad (ej. 1-100)"
+        type="number"
+        step="0.1"
+        placeholder="0.0 a 10.0"
       />
-
       {editing ? (
         <>
           <button className="btn-update" onClick={handleUpdate}>
