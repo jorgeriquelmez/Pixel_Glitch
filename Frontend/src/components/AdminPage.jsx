@@ -15,17 +15,26 @@ export default function AdminPage() {
     popularity: '',
   });
 
+  const [editing, setEditing] = useState(false);
+  const [editingId, setEditingId] = useState(null);
+
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleAdd = async () => {
     if (!formData.title) return;
 
+    const dataToSend = {
+      ...formData,
+      price: Number(formData.price),
+      popularity: Number(formData.popularity),
+    };
+
     try {
       const res = await fetch('https://pixel-glitch.onrender.com/api/games', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(dataToSend),
       });
 
       if (!res.ok) throw new Error('Error al crear juego');
@@ -46,6 +55,32 @@ export default function AdminPage() {
     }
   };
 
+  const handleUpdate = async () => {
+    if (!formData.title || !editingId) return;
+
+    const dataToSend = {
+      ...formData,
+      price: Number(formData.price),
+      popularity: Number(formData.popularity),
+    };
+
+    try {
+      const res = await fetch(`https://pixel-glitch.onrender.com/api/games/${editingId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dataToSend),
+      });
+
+      if (!res.ok) throw new Error('Error al actualizar juego');
+
+      const updatedGame = await res.json();
+      setGames(games.map((game) => (game.id === editingId ? updatedGame : game)));
+      handleCancel();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleDelete = async (id) => {
     try {
       const res = await fetch(`https://pixel-glitch.onrender.com/api/games/${id}`, {
@@ -60,9 +95,37 @@ export default function AdminPage() {
     }
   };
 
+  const handleEdit = (game) => {
+    setEditing(true);
+    setEditingId(game.id);
+    setFormData({
+      title: game.title,
+      platforms: game.platforms,
+      price: game.price,
+      image: game.image,
+      genre: game.genre,
+      release_date: game.release_date,
+      popularity: game.popularity,
+    });
+  };
+
+  const handleCancel = () => {
+    setEditing(false);
+    setEditingId(null);
+    setFormData({
+      title: '',
+      platforms: '',
+      price: '',
+      image: '',
+      genre: '',
+      release_date: '',
+      popularity: '',
+    });
+  };
+
   return (
     <div className="admin-container">
-      <h2>Agregar nuevo juego</h2>
+      <h2>{editing ? 'Editar juego' : 'Agregar nuevo juego'}</h2>
 
       <label>Título</label>
       <input
@@ -120,9 +183,20 @@ export default function AdminPage() {
         placeholder="Popularidad (ej. 1-100)"
       />
 
-      <button className="btn-add" onClick={handleAdd}>
-        Agregar juego
-      </button>
+      {editing ? (
+        <>
+          <button className="btn-update" onClick={handleUpdate}>
+            Actualizar juego
+          </button>
+          <button className="btn-cancel" onClick={handleCancel}>
+            Cancelar
+          </button>
+        </>
+      ) : (
+        <button className="btn-add" onClick={handleAdd}>
+          Agregar juego
+        </button>
+      )}
 
       <h3>Listado de Juegos</h3>
       <table className="game-table">
@@ -142,6 +216,7 @@ export default function AdminPage() {
                 key={j.id || i}
                 idx={i}
                 juego={j}
+                onEdit={() => handleEdit(j)}
                 onDelete={() => handleDelete(j.id)}
               />
             ))}

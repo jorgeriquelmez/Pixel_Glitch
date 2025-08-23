@@ -1,8 +1,9 @@
 import { Router } from 'express'
-import { getGameById } from '../controllers/reviews.js'
 import {
   fetchGames,
+  fetchGameById,
   addGame,
+  updateGame,
   removeGame
 } from '../controllers/gameController.js'
 
@@ -10,7 +11,7 @@ const router = Router()
 
 router.get('/', fetchGames)
 router.post('/', addGame)
+router.put('/:id', updateGame)
 router.delete('/:id', removeGame)
-router.get('/:id', getGameById)
-
+router.get('/:id', fetchGameById)
 export default router
