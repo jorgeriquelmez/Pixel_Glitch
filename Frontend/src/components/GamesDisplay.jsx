@@ -1,13 +1,14 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useContext, useState, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { AppContext } from '../context/AppContext'; 
 import './GamesDisplay.css';
 import CardGame from './CardGame';
 
 const GamesDisplay = () => {
+  const { games, setGames } = useContext(AppContext); 
   const [searchParams] = useSearchParams();
   const initialGenre = searchParams.get('genre') || '';
-
-  const [allGames, setAllGames] = useState([]);
+  
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -18,6 +19,7 @@ const GamesDisplay = () => {
   const [sortBy, setSortBy] = useState('Precio');
 
   useEffect(() => {
+    // La lógica de fetch puede ser movida a AppContext para evitar duplicación
     const fetchGames = async () => {
       try {
         const response = await fetch('https://pixel-glitch.onrender.com/api/games');
@@ -25,7 +27,7 @@ const GamesDisplay = () => {
           throw new Error('Error al obtener los juegos');
         }
         const gamesData = await response.json();
-        setAllGames(gamesData);
+        setGames(gamesData); // Guarda los juegos en el estado global
       } catch (error) {
         console.error("Error al obtener los juegos:", error);
         setError(error.message);
@@ -33,23 +35,26 @@ const GamesDisplay = () => {
         setIsLoading(false);
       }
     };
-    fetchGames();
-  }, []);
+
+    if (games.length === 0 && !error) {
+      fetchGames();
+    }
+  }, [games, setGames, error]);
 
   const platforms = useMemo(() => {
-    if (allGames.length === 0) return [];
-    return [...new Set(allGames.flatMap(game => game.platforms.split(', ')))];
-  }, [allGames]);
+    if (games.length === 0) return [];
+    return [...new Set(games.flatMap(game => game.platforms.split(', ')))];
+  }, [games]);
 
   const genres = useMemo(() => {
-    if (allGames.length === 0) return [];
-    return [...new Set(allGames.map(game => game.genre))];
-  }, [allGames]);
+    if (games.length === 0) return [];
+    return [...new Set(games.map(game => game.genre))];
+  }, [games]);
 
   const priceRanges = ['0-20', '20-50', '50+'];
 
   const filteredAndSortedGames = useMemo(() => {
-    let filteredGames = [...allGames];
+    let filteredGames = [...games];
 
     if (searchQuery) {
       filteredGames = filteredGames.filter(game =>
@@ -92,7 +97,7 @@ const GamesDisplay = () => {
       return 0;
     });
     return filteredGames;
-  }, [allGames, searchQuery, platformFilter, genreFilter, priceRangeFilter, sortBy]);
+  }, [games, searchQuery, platformFilter, genreFilter, priceRangeFilter, sortBy]);
 
   if (isLoading) {
     return <div className="text-center my-5">Cargando juegos...</div>;
