@@ -2,7 +2,7 @@ import {
   getAllGames,
   createGame,
   deleteGame,
-  updateGame,
+  updateGame as updateGameModel,
   getGameByIdWithComments
 } from '../models/gameModel.js'
 
@@ -66,7 +66,7 @@ export const addGame = async (req, res) => {
 export const updateGame = async (req, res) => {
   try {
     const { id } = req.params
-    const updatedGame = await updateGame(id, req.body)
+    const updatedGame = await updateGameModel(id, req.body)
     res.status(200).json(updatedGame)
   } catch (error) {
     res.status(500).json({ error: error.message })
