@@ -18,7 +18,7 @@ export default function AdminPage() {
   const [editing, setEditing] = useState(false);
   const [editingId, setEditingId] = useState(null);
 
-  // Lógica para obtener los juegos al cargar la página (mantenemos la de tu compañero por defecto)
+  // Lógica para obtener los juegos al cargar la página
   useEffect(() => {
     const fetchGames = async () => {
       try {
