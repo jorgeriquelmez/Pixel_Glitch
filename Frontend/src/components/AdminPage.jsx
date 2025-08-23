@@ -6,18 +6,20 @@ import './AdminPage.css';
 export default function AdminPage() {
   const { games, setGames } = useContext(AppContext);
   const [formData, setFormData] = useState({
-    nombre: '',
-    plataforma: '',
-    precio: '',
-    imagen: '',
+    title: '',
+    platforms: '',
+    price: '',
+    image: '',
+    genre: '',
+    release_date: '',
+    popularity: '',
   });
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  // 🔹 Agregar nuevo juego
   const handleAdd = async () => {
-    if (!formData.nombre) return;
+    if (!formData.title) return;
 
     try {
       const res = await fetch('https://pixel-glitch.onrender.com/api/games', {
@@ -29,27 +31,24 @@ export default function AdminPage() {
       if (!res.ok) throw new Error('Error al crear juego');
 
       const newGame = await res.json();
-
-      // Normalizar propiedades para frontend
-      const normalized = {
-        id: newGame.id,
-        nombre: newGame.nombre || newGame.nombreJuego,
-        plataforma: newGame.plataforma,
-        precio: newGame.precio || newGame.precioJuego,
-        imagen: newGame.imagen
-      };
-
-      setGames([...games, normalized]);
-      setFormData({ nombre: '', plataforma: '', precio: '', imagen: '' });
+      setGames([...games, newGame]);
+      setFormData({
+        title: '',
+        platforms: '',
+        price: '',
+        image: '',
+        genre: '',
+        release_date: '',
+        popularity: '',
+      });
     } catch (error) {
       console.error(error);
     }
   };
 
-  // 🔹 Eliminar juego
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/games/${id}`, {
+      const res = await fetch(`https://pixel-glitch.onrender.com/api/games/${id}`, {
         method: 'DELETE',
       });
 
@@ -65,36 +64,60 @@ export default function AdminPage() {
     <div className="admin-container">
       <h2>Agregar nuevo juego</h2>
 
-      <label>Nombre</label>
+      <label>Título</label>
       <input
-        name="nombre"
-        value={formData.nombre}
+        name="title"
+        value={formData.title}
         onChange={handleChange}
-        placeholder="Nombre del juego"
+        placeholder="Título del juego"
       />
 
       <label>Plataforma</label>
       <input
-        name="plataforma"
-        value={formData.plataforma}
+        name="platforms"
+        value={formData.platforms}
         onChange={handleChange}
         placeholder="PC / Xbox / PlayStation"
       />
 
       <label>Precio</label>
       <input
-        name="precio"
-        value={formData.precio}
+        name="price"
+        value={formData.price}
         onChange={handleChange}
         placeholder="Ingresa precio"
       />
 
       <label>Imagen</label>
       <input
-        name="imagen"
-        value={formData.imagen}
+        name="image"
+        value={formData.image}
         onChange={handleChange}
         placeholder="URL de portada"
+      />
+
+      <label>Género</label>
+      <input
+        name="genre"
+        value={formData.genre}
+        onChange={handleChange}
+        placeholder="Género del juego"
+      />
+
+      <label>Fecha de lanzamiento</label>
+      <input
+        name="release_date"
+        value={formData.release_date}
+        onChange={handleChange}
+        placeholder="Fecha de lanzamiento (ej. YYYY-MM-DD)"
+      />
+
+      <label>Popularidad</label>
+      <input
+        name="popularity"
+        value={formData.popularity}
+        onChange={handleChange}
+        placeholder="Popularidad (ej. 1-100)"
       />
 
       <button className="btn-add" onClick={handleAdd}>
@@ -106,7 +129,7 @@ export default function AdminPage() {
         <thead>
           <tr>
             <th>#</th>
-            <th>Nombre</th>
+            <th>Título</th>
             <th>Plataforma</th>
             <th>Precio</th>
             <th>---</th>
