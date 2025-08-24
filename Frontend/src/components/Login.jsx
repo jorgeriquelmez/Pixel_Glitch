@@ -13,8 +13,8 @@ const Login = () => {
   e.preventDefault();
 
   try {
-    // const res = await fetch("https://pixel-glitch.onrender.com/users/login", {
-    const res = await fetch("http://localhost:3000/users/login", {
+    const res = await fetch("https://pixel-glitch.onrender.com/users/login", {
+    // const res = await fetch("http://localhost:3000/users/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),

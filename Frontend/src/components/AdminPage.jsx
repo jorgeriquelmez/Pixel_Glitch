@@ -73,8 +73,8 @@ export default function AdminPage() {
       popularity: Number(formData.popularity),
     };
     try {
-      // const res = await fetch(`https://pixel-glitch.onrender.com/api/games/${editingId}`, {
-      const res = await fetch(`http://localhost:3000/api/games/${editingId}`, {
+      const res = await fetch(`https://pixel-glitch.onrender.com/api/games/${editingId}`, {
+      // const res = await fetch(`http://localhost:3000/api/games/${editingId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(dataToSend),
@@ -90,8 +90,8 @@ export default function AdminPage() {
 
   const handleDelete = async (id) => {
     try {
-      // const res = await fetch(`https://pixel-glitch.onrender.com/api/games/${id}`, {
-      const res = await fetch(`https://http://localhost:3000/api/games/${id}`, {
+      const res = await fetch(`https://pixel-glitch.onrender.com/api/games/${id}`, {
+      // const res = await fetch(`https://http://localhost:3000/api/games/${id}`, {
         method: 'DELETE',
       });
       if (!res.ok) throw new Error('Error al eliminar juego');

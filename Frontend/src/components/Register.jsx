@@ -24,8 +24,8 @@ const Register = () => {
     }
 
     try {
-      // const res = await fetch("https://pixel-glitch.onrender.com/users/register", {
-      const res = await fetch("http://localhost:3000/users/register", {
+      const res = await fetch("https://pixel-glitch.onrender.com/users/register", {
+      // const res = await fetch("http://localhost:3000/users/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

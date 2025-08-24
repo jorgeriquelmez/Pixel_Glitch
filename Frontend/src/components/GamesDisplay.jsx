@@ -1,47 +1,32 @@
-import React, { useContext, useState, useEffect, useMemo } from 'react';
-import { useSearchParams, useLocation } from 'react-router-dom';
-import { AppContext } from '../context/AppContext';
+import React, { useState, useEffect, useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import './GamesDisplay.css';
 import CardGame from './CardGame';
 
 const GamesDisplay = () => {
-  const { games, setGames } = useContext(AppContext);
   const [searchParams] = useSearchParams();
-  const location = useLocation();
-
   const initialGenre = searchParams.get('genre') || '';
 
+  const [allGames, setAllGames] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+
   const [searchQuery, setSearchQuery] = useState('');
   const [platformFilter, setPlatformFilter] = useState('');
   const [genreFilter, setGenreFilter] = useState(initialGenre);
   const [priceRangeFilter, setPriceRangeFilter] = useState('');
-
-  const getInitialSortBy = () => {
-    if (location.pathname === '/top-ventas') {
-      return 'Popularidad';
-    }
-    return 'Precio';
-  };
-
-  const [sortBy, setSortBy] = useState(getInitialSortBy());
+  const [sortBy, setSortBy] = useState('Precio');
 
   useEffect(() => {
-    if (games.length > 0) {
-      setIsLoading(false);
-      return;
-    }
-
     const fetchGames = async () => {
       try {
-        // const response = await fetch('https://pixel-glitch.onrender.com/api/games');
-        const response = await fetch('https://localhost:3000/api/games');
+        const response = await fetch('https://pixel-glitch.onrender.com/api/games');
+        // const response = await fetch('http://localhost:3000/api/games');
         if (!response.ok) {
           throw new Error('Error al obtener los juegos');
         }
         const gamesData = await response.json();
-        setGames(gamesData);
+        setAllGames(gamesData);
       } catch (error) {
         console.error("Error al obtener los juegos:", error);
         setError(error.message);
@@ -49,25 +34,23 @@ const GamesDisplay = () => {
         setIsLoading(false);
       }
     };
-    
     fetchGames();
   }, []);
 
   const platforms = useMemo(() => {
-    if (games.length === 0) return [];
-    const allPlatforms = games.flatMap(game => (game.platforms ? game.platforms.split(', ') : []));
-    return [...new Set(allPlatforms)];
-  }, [games]);
+    if (allGames.length === 0) return [];
+    return [...new Set(allGames.flatMap(game => game.platforms.split(', ')))];
+  }, [allGames]);
 
   const genres = useMemo(() => {
-    if (games.length === 0) return [];
-    return [...new Set(games.map(game => game.genre))];
-  }, [games]);
+    if (allGames.length === 0) return [];
+    return [...new Set(allGames.map(game => game.genre))];
+  }, [allGames]);
 
   const priceRanges = ['0-20', '20-50', '50+'];
 
   const filteredAndSortedGames = useMemo(() => {
-    let filteredGames = [...games];
+    let filteredGames = [...allGames];
 
     if (searchQuery) {
       filteredGames = filteredGames.filter(game =>
@@ -102,7 +85,7 @@ const GamesDisplay = () => {
         return a.price - b.price;
       }
       if (sortBy === 'Fecha de Lanzamiento') {
-        return new Date(b.release_date) - new Date(a.release_date);
+        return new Date(b.releaseDate) - new Date(a.releaseDate);
       }
       if (sortBy === 'Popularidad') {
         return b.popularity - a.popularity;
@@ -110,7 +93,7 @@ const GamesDisplay = () => {
       return 0;
     });
     return filteredGames;
-  }, [games, searchQuery, platformFilter, genreFilter, priceRangeFilter, sortBy]);
+  }, [allGames, searchQuery, platformFilter, genreFilter, priceRangeFilter, sortBy]);
 
   if (isLoading) {
     return <div className="text-center my-5">Cargando juegos...</div>;
@@ -122,9 +105,7 @@ const GamesDisplay = () => {
 
   return (
     <div className="games-display-container">
-      <h1 className="main-title">
-        {location.pathname === '/top-ventas' ? 'Juegos más Populares' : 'Explora los juegos'}
-      </h1>
+      <h1 className="main-title">Explora los juegos</h1>
       <div className="filter-section">
         <div className="search-box">
           <input
@@ -135,7 +116,7 @@ const GamesDisplay = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
           <svg xmlns="http://www.w3.org/2000/svg" className="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
         </div>
         <div className="dropdowns">

@@ -16,8 +16,8 @@ function Reviews() {
   useEffect(() => {
     const fetchGame = async () => {
       try {
-        // const res = await axios.get(`https://pixel-glitch.onrender.com/api/games/${id}?limit=2`);
-        const res = await axios.get(`http://localhost:3000/api/games/${id}?limit=2`);
+        const res = await axios.get(`https://pixel-glitch.onrender.com/api/games/${id}?limit=2`);
+        // const res = await axios.get(`http://localhost:3000/api/games/${id}?limit=2`);
         const raw = res.data;
         console.log("RAW response from backend:", raw);
         setRawResponse(raw);
