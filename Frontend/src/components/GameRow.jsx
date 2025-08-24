@@ -1,13 +1,6 @@
 import React from 'react';
 
-/**
- * GameRow Component
- * Props:
- * - idx: index in the array
- * - juego: { id, title, platforms, price, image, genre, release_date, popularity }
- * - onDelete: function to delete this game
- * - onEdit: function to edit this game
- */
+
 export default function GameRow({ idx, juego, onDelete, onEdit }) {
   return (
     <tr>

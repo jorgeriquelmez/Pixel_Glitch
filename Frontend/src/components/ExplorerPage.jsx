@@ -15,7 +15,8 @@ const ExplorerPage = () => {
   useEffect(() => {
     const fetchGames = async () => {
       try {
-        const response = await fetch('https://pixel-glitch.onrender.com/api/games');
+        // const response = await fetch('https://pixel-glitch.onrender.com/api/games');
+        const response = await fetch('http://localhost:3000/api/games');
         if (!response.ok) {
           throw new Error('Error al obtener los juegos');
         }

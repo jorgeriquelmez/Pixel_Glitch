@@ -35,7 +35,8 @@ const GamesDisplay = () => {
 
     const fetchGames = async () => {
       try {
-        const response = await fetch('https://pixel-glitch.onrender.com/api/games');
+        // const response = await fetch('https://pixel-glitch.onrender.com/api/games');
+        const response = await fetch('https://localhost:3000/api/games');
         if (!response.ok) {
           throw new Error('Error al obtener los juegos');
         }
@@ -50,7 +51,6 @@ const GamesDisplay = () => {
     };
     
     fetchGames();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const platforms = useMemo(() => {
