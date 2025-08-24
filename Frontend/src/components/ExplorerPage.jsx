@@ -1,232 +1,127 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { AppContext } from '../context/AppContext';
-import GameRow from './GameRow';
-import './AdminPage.css';
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import portadaImage from '../assets/portada.jpeg';
+import './ExplorerPage.css';
+import CardGame from './CardGame';
 
-export default function AdminPage() {
-    const { games, setGames } = useContext(AppContext);
-    const [formData, setFormData] = useState({
-        title: '',
-        platforms: '',
-        price: '',
-        image: '',
-        genre: '',
-        release_date: '',
-        popularity: '',
-    });
+const ExplorerPage = () => {
+  const [allGames, setAllGames] = useState([]);
+  const [latestGames, setLatestGames] = useState([]);
+  const [topSellingGames, setTopSellingGames] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    const [editing, setEditing] = useState(false);
-    const [editingId, setEditingId] = useState(null);
-
-    useEffect(() => {
-        const fetchGames = async () => {
-            try {
-                const res = await fetch('https://pixel-glitch.onrender.com/api/games');
-                if (!res.ok) throw new Error('Error al obtener juegos');
-                const data = await res.json();
-                setGames(data);
-            } catch (error) {
-                console.error("Error cargando juegos en AdminPage:", error);
-            }
-        };
-        fetchGames();
-    }, [setGames]);
-
-    const handleChange = (e) =>
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-
-    const handleAdd = async () => {
-        if (!formData.title) return;
-        const dataToSend = {
-            ...formData,
-            price: Number(formData.price),
-            popularity: Number(formData.popularity),
-        };
-        try {
-            const res = await fetch('https://pixel-glitch.onrender.com/api/games', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(dataToSend),
-            });
-            if (!res.ok) throw new Error('Error al crear juego');
-            const newGame = await res.json();
-            setGames([...games, newGame]);
-            setFormData({
-                title: '',
-                platforms: '',
-                price: '',
-                image: '',
-                genre: '',
-                release_date: '',
-                popularity: '',
-            });
-        } catch (error) {
-            console.error(error);
+  useEffect(() => {
+    const fetchGames = async () => {
+      try {
+        const response = await fetch('https://pixel-glitch.onrender.com/api/games');
+        // const response = await fetch('http://localhost:3000/api/games');
+        if (!response.ok) {
+          throw new Error('Error al obtener los juegos');
         }
+        const gamesData = await response.json();
+        setAllGames(gamesData);
+      } catch (error) {
+        console.error("Error al obtener los juegos:", error);
+        setError(error.message);
+      } finally {
+        setIsLoading(false);
+      }
     };
+    fetchGames();
+  }, []);
 
-    const handleUpdate = async () => {
-        if (!formData.title || !editingId) return;
-        const dataToSend = {
-            ...formData,
-            price: Number(formData.price),
-            popularity: Number(formData.popularity),
-        };
-        try {
-            const res = await fetch(`https://pixel-glitch.onrender.com/api/games/${editingId}`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(dataToSend),
-            });
-            if (!res.ok) throw new Error('Error al actualizar juego');
-            const updatedGame = await res.json();
-            setGames(games.map((game) => (game.id === editingId ? updatedGame : game)));
-            handleCancel();
-        } catch (error) {
-            console.error(error);
-        }
-    };
+  useEffect(() => {
+    if (allGames.length > 0) {
+      const sortedLatest = [...allGames].sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+      setLatestGames(sortedLatest.slice(0, 4));
 
-    const handleDelete = async (id) => {
-        try {
-            const res = await fetch(`https://pixel-glitch.onrender.com/api/games/${id}`, {
-                method: 'DELETE',
-            });
-            if (!res.ok) throw new Error('Error al eliminar juego');
-            setGames(games.filter((g) => g.id !== id));
-        } catch (error) {
-            console.error(error);
-        }
-    };
+      const sortedByPopularity = [...allGames].sort((a, b) => b.popularity - a.popularity);
+      setTopSellingGames(sortedByPopularity.slice(0, 4));
+    }
+  }, [allGames]);
 
-    const handleEdit = (game) => {
-        setEditing(true);
-        setEditingId(game.id);
-        setFormData({
-            title: game.title,
-            platforms: game.platforms,
-            price: game.price,
-            image: game.image,
-            genre: game.genre,
-            release_date: game.release_date,
-            popularity: game.popularity,
-        });
-    };
+  if (isLoading) {
+    return <div className="text-center my-5">Cargando juegos...</div>;
+  }
 
-    const handleCancel = () => {
-        setEditing(false);
-        setEditingId(null);
-        setFormData({
-            title: '',
-            platforms: '',
-            price: '',
-            image: '',
-            genre: '',
-            release_date: '',
-            popularity: '',
-        });
-    };
+  if (error) {
+    return <div className="text-center my-5">Error: {error}</div>;
+  }
 
-    return (
-        <div className="admin-container">
-            <h2>{editing ? 'Editar juego' : 'Agregar nuevo juego'}</h2>
-            <label>Título</label>
-            <input
-                name="title"
-                value={formData.title}
-                onChange={handleChange}
-                placeholder="Título del juego"
-            />
-            <label>Plataformas</label>
-            <input
-                name="platforms"
-                value={formData.platforms}
-                onChange={handleChange}
-                placeholder="PC / Xbox / PS5"
-            />
-            <label>Precio</label>
-            <input
-                name="price"
-                value={formData.price}
-                onChange={handleChange}
-                placeholder="Precio"
-                type="number"
-            />
-            <label>Imagen</label>
-            <input
-                name="image"
-                value={formData.image}
-                onChange={handleChange}
-                placeholder="URL imagen"
-            />
-            <label>Género</label>
-            <select
-                name="genre"
-                value={formData.genre}
-                onChange={handleChange}
-            >
-                <option value="">Selecciona un género</option>
-                <option value="acción">acción</option>
-                <option value="deportes">deportes</option>
-                <option value="rpg">rpg</option>
-                <option value="simulador">simulador</option>
-                <option value="aventura">aventura</option>
-                <option value="estrategia">estrategia</option>
-            </select>
-            <label>Fecha de lanzamiento</label>
-            <input
-                name="release_date"
-                value={formData.release_date}
-                onChange={handleChange}
-                type="date"
-            />
-            <label>Popularidad</label>
-            <input
-                name="popularity"
-                value={formData.popularity}
-                onChange={handleChange}
-                type="number"
-                step="0.1"
-                placeholder="0.0 a 10.0"
-            />
-            {editing ? (
-                <>
-                    <button className="btn-update" onClick={handleUpdate}>
-                        Actualizar juego
-                    </button>
-                    <button className="btn-cancel" onClick={handleCancel}>
-                        Cancelar
-                    </button>
-                </>
-            ) : (
-                <button className="btn-add" onClick={handleAdd}>
-                    Agregar juego
-                </button>
-            )}
-            <h3>Listado de Juegos</h3>
-            <table className="game-table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Título</th>
-                        <th>Plataforma</th>
-                        <th>Precio</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {games &&
-                        games.map((j, i) => (
-                            <GameRow
-                                key={j.id || i}
-                                idx={i}
-                                juego={j}
-                                onEdit={() => handleEdit(j)}
-                                onDelete={() => handleDelete(j.id)}
-                            />
-                        ))}
-                </tbody>
-            </table>
+  return (
+    <div className="explorer-container">
+      <Container className="portada-section">
+        <div className="portada-wrapper">
+          <img src={portadaImage} alt="Descripción de la imagen" className="portada-image" />
         </div>
-    );
-}
+      </Container>
+      <Container className="lanzamientos-section">
+        <h1 className="text-center my-4">Nuevos lanzamientos</h1>
+        <Row xs={1} md={2} lg={4} className="g-4 justify-content-center">
+          {latestGames.map((game) => (
+            <Col key={game.id}>
+              <CardGame game={game} />
+            </Col>
+          ))}
+        </Row>
+      </Container>
+      <Container className="top-section">
+        <h1 className="text-center my-4">Top Ventas</h1>
+        <Row xs={1} md={2} lg={4} className="g-4 justify-content-center">
+          {topSellingGames.map((game) => (
+            <Col key={game.id}>
+              <CardGame game={game} />
+            </Col>
+          ))}
+        </Row>
+      </Container>
+      <Container className="categories-section">
+        <h2 className="text-center my-5">Categorías</h2>
+        <Row className="mb-4">
+          <Col md={4}>
+            <Link to="/genre/acción" className="category-card">
+              <img src="https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/accion.jpg" alt="Accion" className="category-image" />
+              <div className="category-overlay"><span>Accion</span></div>
+            </Link>
+          </Col>
+          <Col md={4}>
+            <Link to="/genre/aventura" className="category-card">
+              <img src="https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/aventura.jpg" alt="Aventura" className="category-image" />
+              <div className="category-overlay"><span>Aventura</span></div>
+            </Link>
+          </Col>
+          <Col md={4}>
+            <Link to="/genre/rpg" className="category-card">
+              <img src="https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/rpg.jpg" alt="RPG" className="category-image" />
+              <div className="category-overlay"><span>RPG</span></div>
+            </Link>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={4}>
+            <Link to="/genre/estrategia" className="category-card">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShBa45DthoN9U4n4P7_tLAXSnOeV7ZMVLiLg&s" alt="Estrategia" className="category-image" />
+              <div className="category-overlay"><span>Estrategia</span></div>
+            </Link>
+          </Col>
+          <Col md={4}>
+            <Link to="/genre/simulador" className="category-card">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfCmPOz3-7c46RndPrVvDBzzLzACwioj3Aqg&s" alt="Simulacion" className="category-image" />
+              <div className="category-overlay"><span>Simulacion</span></div>
+            </Link>
+          </Col>
+          <Col md={4}>
+            <Link to="/genre/deportes" className="category-card">
+              <img src="https://raw.githubusercontent.com/jorgeriquelmez/imagenes/refs/heads/main/deportes.jpg" alt="Deportes" className="category-image" />
+              <div className="category-overlay"><span>Deportes</span></div>
+            </Link>
+          </Col>
+        </Row>
+      </Container>
+    </div>
+  );
+};
+
+export default ExplorerPage;
