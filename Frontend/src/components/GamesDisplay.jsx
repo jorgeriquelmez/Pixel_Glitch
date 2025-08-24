@@ -1,25 +1,33 @@
 import React, { useContext, useState, useEffect, useMemo } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { AppContext } from '../context/AppContext'; 
+import { useSearchParams, useLocation } from 'react-router-dom';
+import { AppContext } from '../context/AppContext';
 import './GamesDisplay.css';
 import CardGame from './CardGame';
 
 const GamesDisplay = () => {
-  const { games, setGames } = useContext(AppContext); 
+  const { games, setGames } = useContext(AppContext);
   const [searchParams] = useSearchParams();
-  const initialGenre = searchParams.get('genre') || '';
+  const location = useLocation(); 
   
+  const initialGenre = searchParams.get('genre') || '';
+
+  // Determina el valor inicial de sortBy basado en la URL
+  const getInitialSortBy = () => {
+    if (location.pathname === '/top-ventas') {
+      return 'Popularidad';
+    }
+    return 'Precio';
+  };
+
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-
   const [searchQuery, setSearchQuery] = useState('');
   const [platformFilter, setPlatformFilter] = useState('');
   const [genreFilter, setGenreFilter] = useState(initialGenre);
   const [priceRangeFilter, setPriceRangeFilter] = useState('');
-  const [sortBy, setSortBy] = useState('Precio');
+  const [sortBy, setSortBy] = useState(getInitialSortBy()); // Usa la nueva función aquí
 
   useEffect(() => {
-    // La lógica de fetch puede ser movida a AppContext para evitar duplicación
     const fetchGames = async () => {
       try {
         const response = await fetch('https://pixel-glitch.onrender.com/api/games');
@@ -27,7 +35,7 @@ const GamesDisplay = () => {
           throw new Error('Error al obtener los juegos');
         }
         const gamesData = await response.json();
-        setGames(gamesData); // Guarda los juegos en el estado global
+        setGames(gamesData);
       } catch (error) {
         console.error("Error al obtener los juegos:", error);
         setError(error.message);
@@ -43,7 +51,8 @@ const GamesDisplay = () => {
 
   const platforms = useMemo(() => {
     if (games.length === 0) return [];
-    return [...new Set(games.flatMap(game => game.platforms.split(', ')))];
+    const allPlatforms = games.flatMap(game => game.platforms.split(', '));
+    return [...new Set(allPlatforms)];
   }, [games]);
 
   const genres = useMemo(() => {
@@ -109,7 +118,9 @@ const GamesDisplay = () => {
 
   return (
     <div className="games-display-container">
-      <h1 className="main-title">Explora los juegos</h1>
+      <h1 className="main-title">
+        {location.pathname === '/top-ventas' ? 'Juegos más Populares' : 'Explora los juegos'}
+      </h1>
       <div className="filter-section">
         <div className="search-box">
           <input
@@ -120,7 +131,7 @@ const GamesDisplay = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
           <svg xmlns="http://www.w3.org/2000/svg" className="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
         </div>
         <div className="dropdowns">
