@@ -7,17 +7,9 @@ import CardGame from './CardGame';
 const GamesDisplay = () => {
   const { games, setGames } = useContext(AppContext);
   const [searchParams] = useSearchParams();
-  const location = useLocation(); 
-  
-  const initialGenre = searchParams.get('genre') || '';
+  const location = useLocation();
 
-  // Determina el valor inicial de sortBy basado en la URL
-  const getInitialSortBy = () => {
-    if (location.pathname === '/top-ventas') {
-      return 'Popularidad';
-    }
-    return 'Precio';
-  };
+  const initialGenre = searchParams.get('genre') || '';
 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -25,7 +17,15 @@ const GamesDisplay = () => {
   const [platformFilter, setPlatformFilter] = useState('');
   const [genreFilter, setGenreFilter] = useState(initialGenre);
   const [priceRangeFilter, setPriceRangeFilter] = useState('');
-  const [sortBy, setSortBy] = useState(getInitialSortBy()); // Usa la nueva función aquí
+
+  const getInitialSortBy = () => {
+    if (location.pathname === '/top-ventas') {
+      return 'Popularidad';
+    }
+    return 'Precio';
+  };
+
+  const [sortBy, setSortBy] = useState(getInitialSortBy());
 
   useEffect(() => {
     const fetchGames = async () => {
@@ -36,18 +36,23 @@ const GamesDisplay = () => {
         }
         const gamesData = await response.json();
         setGames(gamesData);
+        setIsLoading(false); 
       } catch (error) {
         console.error("Error al obtener los juegos:", error);
         setError(error.message);
-      } finally {
-        setIsLoading(false);
+        setIsLoading(false); 
       }
     };
+    
+    fetchGames();
+  }, [setGames]); 
 
-    if (games.length === 0 && !error) {
-      fetchGames();
+
+  useEffect(() => {
+    if (games.length > 0) {
+      setIsLoading(false);
     }
-  }, [games, setGames, error]);
+  }, [games]);
 
   const platforms = useMemo(() => {
     if (games.length === 0) return [];
