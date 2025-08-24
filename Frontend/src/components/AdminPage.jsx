@@ -167,12 +167,12 @@ export default function AdminPage() {
                 required // Agregado para que sea un campo obligatorio
             >
                 <option value="">Selecciona un género</option>
-                <option value="acción">acción</option>
-                <option value="deportes">deportes</option>
-                <option value="rpg">rpg</option>
-                <option value="simulador">simulador</option>
-                <option value="aventura">aventura</option>
-                <option value="estrategia">estrategia</option>
+                <option value="Acción">Acción</option>
+                <option value="Deportes">Deportes</option>
+                <option value="RPG">RPG</option>
+                <option value="Simulador">Simulador</option>
+                <option value="Aventura">Aventura</option>
+                <option value="Estrategia">Estrategia</option>
             </select>
             <label>Fecha de lanzamiento</label>
             <input
