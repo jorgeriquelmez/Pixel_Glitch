@@ -50,12 +50,11 @@ const GamesDisplay = () => {
     };
     
     fetchGames();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const platforms = useMemo(() => {
     if (games.length === 0) return [];
-    // Aquí está el cambio: Validamos que game.platforms exista y sea una cadena de texto
     const allPlatforms = games.flatMap(game => (game.platforms ? game.platforms.split(', ') : []));
     return [...new Set(allPlatforms)];
   }, [games]);
