@@ -1,95 +1,97 @@
 /* src/components/AdminPage.css */
 
 :root {
-    --bg: #1e1f29;
-    --input-bg: #2c2f3e;
-    --primary: #4d6fff;
-    --text: #ffffff;
-    --muted: #a0a3b1;
-  }
-  
-  .admin-container {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-    color: var(--text);
-    font-family: 'Roboto', sans-serif;
-  }
-  
-  .admin-container h2,
-  .admin-container h3 {
-    margin-bottom: 1rem;
-  }
-  
-  .admin-container label {
-    display: block;
-    margin-top: 1.25rem;
-    font-weight: 500;
-  }
-  
-  .admin-container input {
-    width: 100%;
-    margin-top: 0.5rem;
-    padding: 0.75rem 1rem;
-    background: var(--input-bg);
-    border: none;
-    border-radius: 8px;
-    color: var(--text);
-    font-size: 0.95rem;
-  }
-  
-  .btn-add {
-    display: inline-block;
-    margin-top: 1.5rem;
-    padding: 0.75rem 2rem;
-    background: var(--primary);
-    border: none;
-    border-radius: 999px;
-    color: var(--text);
-    font-weight: 600;
-    cursor: pointer;
-  }
-  
-  .game-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 2rem;
-  }
-  
-  .game-table th,
-  .game-table td {
-    padding: 0.75rem 0.5rem;
-    text-align: left;
-    font-size: 0.9rem;
-    color: var(--text);
-  }
-  
-  .game-table thead th {
-    border-bottom: 1px solid var(--input-bg);
-    font-weight: 600;
-  }
-  
-  .game-table tbody tr:hover {
-    background: var(--input-bg);
-  }
-  
-  .btn-edit,
-  .btn-delete {
-    padding: 0.4rem 1rem;
-    margin-right: 0.5rem;
-    border: none;
-    border-radius: 6px;
-    font-size: 0.85rem;
-    cursor: pointer;
-  }
-  
-  .btn-edit {
-    background: var(--primary);
-    color: var(--text);
-  }
-  
-  .btn-delete {
-    background: #e74c3c;
-    color: var(--text);
-  }
-  
+  --bg: #1e1f29;
+  --input-bg: #2c2f3e;
+  --primary: #4d6fff;
+  --text: #ffffff;
+  --muted: #a0a3b1;
+}
+
+.admin-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  color: var(--text);
+  font-family: "Roboto", sans-serif;
+}
+
+.admin-container h2,
+.admin-container h3 {
+  margin-bottom: 1rem;
+}
+
+.admin-container label {
+  display: block;
+  margin-top: 1.25rem;
+  font-weight: 500;
+}
+
+.admin-container input {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--input-bg);
+  border: none;
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.btn-add,
+.btn-cancel,
+.btn-cancel {
+  display: inline-block;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 0.75rem 2rem;
+  background: var(--primary);
+  border: none;
+  border-radius: 999px;
+  color: var(--text);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.game-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+}
+
+.game-table th,
+.game-table td {
+  padding: 0.75rem 0.5rem;
+  text-align: left;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.game-table thead th {
+  border-bottom: 1px solid var(--input-bg);
+  font-weight: 600;
+}
+
+.game-table tbody tr:hover {
+  background: var(--input-bg);
+}
+
+.btn-edit,
+.btn-delete {
+  padding: 0.4rem 1rem;
+  margin-right: 0.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.btn-edit {
+  background: var(--primary);
+  color: var(--text);
+}
+
+.btn-delete {
+  background: #e74c3c;
+  color: var(--text);
+}
