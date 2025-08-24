@@ -28,6 +28,11 @@ const GamesDisplay = () => {
   const [sortBy, setSortBy] = useState(getInitialSortBy());
 
   useEffect(() => {
+    if (games.length > 0) {
+      setIsLoading(false);
+      return;
+    }
+
     const fetchGames = async () => {
       try {
         const response = await fetch('https://pixel-glitch.onrender.com/api/games');
@@ -36,23 +41,17 @@ const GamesDisplay = () => {
         }
         const gamesData = await response.json();
         setGames(gamesData);
-        setIsLoading(false); 
       } catch (error) {
         console.error("Error al obtener los juegos:", error);
         setError(error.message);
-        setIsLoading(false); 
+      } finally {
+        setIsLoading(false);
       }
     };
     
     fetchGames();
-  }, [setGames]); 
-
-
-  useEffect(() => {
-    if (games.length > 0) {
-      setIsLoading(false);
-    }
-  }, [games]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const platforms = useMemo(() => {
     if (games.length === 0) return [];
